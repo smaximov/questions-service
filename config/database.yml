@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: questions-service
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: 127.0.0.1
+  database: questions-service_development
+  password: questions-service
+
+test:
+  <<: *default
+  host: 127.0.0.1
+  database: questions-service_test
+  password: questions-service
+
+production:
+  <<: *default
+  database: questions-service_production
+  password: <%= ENV['QUESTIONS-SERVICE_DATABASE_PASSWORD'] %>
