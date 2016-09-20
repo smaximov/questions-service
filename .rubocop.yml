@@ -6,6 +6,8 @@ AllCops:
     - bin/*
   TargetRubyVersion: 2.3
 
+# Style
+
 Style/AutoResourceCleanup:
   Enabled: true
 
@@ -30,5 +32,15 @@ Style/ExtraSpacing:
 Style/Documentation:
   Enabled: false
 
+# Metrics
+
 Metrics/LineLength:
   Max: 120
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
