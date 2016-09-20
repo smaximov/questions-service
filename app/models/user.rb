@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  # Virtual attribute for authentication by either username or email
+  attr_accessor :login
+
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :username, format: /\A[\da-zA-Z._\-]+\z/, allow_nil: true
@@ -17,5 +20,12 @@ class User < ApplicationRecord
   # Strip value and assign it to fullname.
   def fullname=(value)
     super(value.try(:strip))
+  end
+
+  def self.find_for_database_authentication(conditions)
+    login = conditions.delete(:login)
+    where(conditions.to_hash)
+      .where('username = :value OR lower(email) = lower(:value)', value: login)
+      .first
   end
 end
