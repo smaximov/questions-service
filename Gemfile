@@ -45,6 +45,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', '~> 0.42.0'
+  gem 'guard-rspec', '~> 4.7.3', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
