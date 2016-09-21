@@ -9,5 +9,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .container
+      = render 'layouts/messages'
       = yield
       = console if Rails.env.development?

@@ -1,0 +1,8 @@
+- unless flash.empty?
+  .row.flash-messages
+    .col-xs-12.col-md-8.col-md-offset-2
+      - flash.each do |key, message|
+        .alert.alert-dismissable class="alert-#{key}" role="alert"
+          button.close type="button" data-dismiss="alert" aria-label="Close"
+            span aria-hidden="true" &times;
+          | #{message}

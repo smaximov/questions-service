@@ -1,2 +1,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// Inherit bootstrap classes for Devise flash messages
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.spacer {
+  margin-top: 20px;
+}
+
+.flash-messages {
+  @extend .spacer;
+
+  .alert:last-child {
+    margin-bottom: 0;
+  }
+}
