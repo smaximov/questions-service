@@ -10,3 +10,4 @@ html
   body
     .container
       = yield
+      = console if Rails.env.development?
