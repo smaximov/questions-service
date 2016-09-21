@@ -46,10 +46,15 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', '~> 0.42.0'
   gem 'guard-rspec', '~> 4.7.3', require: false
+  gem 'foreman', '~> 0.82.0'
 end
 
 group :test do
   gem 'capybara', '~> 2.9.0'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
