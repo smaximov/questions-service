@@ -14,10 +14,6 @@
   margin-top: 20px;
 }
 
-.flash-messages {
+main.container {
   @extend .spacer;
-
-  .alert:last-child {
-    margin-bottom: 0;
-  }
 }
