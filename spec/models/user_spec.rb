@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { FactoryGirl.build(:user) }
 
-  it 'is valid with valid attributes' do
+  it 'has valid factory' do
     expect(user).to be_valid
   end
 
@@ -54,6 +54,13 @@ RSpec.describe User, type: :model do
     it 'is stripped of surrounded whitespace' do
       user.fullname = " John Doe \n\t"
       expect(user.fullname).to eq('John Doe')
+    end
+  end
+
+  describe '#questions' do
+    it 'is a has_many association' do
+      assoc_type = User.reflect_on_association(:questions).macro
+      expect(assoc_type).to be(:has_many)
     end
   end
 end
