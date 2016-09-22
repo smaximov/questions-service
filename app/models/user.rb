@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
+  include Strippable
+
   has_many :questions, foreign_key: :author_id
 
   # Include default devise modules. Others available are:
@@ -19,10 +21,7 @@ class User < ApplicationRecord
   validates :fullname, presence: true
   validates :fullname, length: { within: 5..30 }, allow_nil: true
 
-  # Strip value and assign it to fullname.
-  def fullname=(value)
-    super(value.try(:strip))
-  end
+  strip :fullname
 
   def self.find_for_database_authentication(conditions)
     login = conditions.delete(:login)
