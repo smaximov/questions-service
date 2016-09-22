@@ -25,7 +25,6 @@ class User < ApplicationRecord
   def self.find_for_database_authentication(conditions)
     login = conditions.delete(:login)
     where(conditions.to_hash)
-      .where('username = :value OR lower(email) = lower(:value)', value: login)
-      .first
+      .find_by('username = :value OR lower(email) = lower(:value)', value: login)
   end
 end
