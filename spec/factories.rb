@@ -25,7 +25,7 @@ FactoryGirl.define do
 
   factory :question do
     sequence(:title) { |n| "Question ##{n} by #{author.fullname}" }
-    sequence(:body) { |n| "Body of the question ##{n} by #{author.fullname}" }
+    sequence(:question) { |n| "Body of the question ##{n} by #{author.fullname}" }
     author
   end
 end

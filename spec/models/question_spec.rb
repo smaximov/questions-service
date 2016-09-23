@@ -41,25 +41,25 @@ RSpec.describe Question, type: :model do
     end
   end
 
-  describe '#body' do
+  describe '#question' do
     it 'is required' do
-      question.body = nil
-      expect(question).to have_errors_on(:body).only
+      question.question = nil
+      expect(question).to have_errors_on(:question).only
     end
 
     it 'is stripped of surrounding whitespace' do
-      question.body = " Question Body \n\t"
-      expect(question.body).to eq('Question Body')
+      question.question = " Question Body \n\t"
+      expect(question.question).to eq('Question Body')
     end
 
     it 'has minimum length of 20 characters' do
-      question.body = 'a' * 19
-      expect(question).to have_errors_on(:body).only
+      question.question = 'a' * 19
+      expect(question).to have_errors_on(:question).only
     end
 
     it 'has maximum length of 1000 characters' do
-      question.body = 'a' * 1001
-      expect(question).to have_errors_on(:body).only
+      question.question = 'a' * 1001
+      expect(question).to have_errors_on(:question).only
     end
   end
 end

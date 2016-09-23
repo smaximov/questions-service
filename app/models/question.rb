@@ -7,9 +7,9 @@ class Question < ApplicationRecord
   validates :title, presence: true
   validates :title, length: { within: 10..50 }
 
-  validates :body, presence: true
-  validates :body, length: { within: 20..1000 }
+  validates :question, presence: true
+  validates :question, length: { within: 20..1000 }
 
   strip :title
-  strip :body
+  strip :question
 end
