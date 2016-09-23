@@ -22,7 +22,7 @@ RSpec.describe Question, type: :model do
   describe '#title' do
     it 'is required' do
       question.title = nil
-      expect(question).to have_errors_on(:title).only
+      expect(question).to have_errors_on(:title).only.exactly(1)
     end
 
     it 'is stripped of surrounding whitespace' do
@@ -32,19 +32,19 @@ RSpec.describe Question, type: :model do
 
     it 'has minimun length of 10 characters' do
       question.title = 'a' * 9
-      expect(question).to have_errors_on(:title).only
+      expect(question).to have_errors_on(:title).only.exactly(1)
     end
 
     it 'has maximum length of 50 characters' do
       question.title = 'a' * 51
-      expect(question).to have_errors_on(:title).only
+      expect(question).to have_errors_on(:title).only.exactly(1)
     end
   end
 
   describe '#question' do
     it 'is required' do
       question.question = nil
-      expect(question).to have_errors_on(:question).only
+      expect(question).to have_errors_on(:question).only.exactly(1)
     end
 
     it 'is stripped of surrounding whitespace' do
@@ -54,12 +54,12 @@ RSpec.describe Question, type: :model do
 
     it 'has minimum length of 20 characters' do
       question.question = 'a' * 19
-      expect(question).to have_errors_on(:question).only
+      expect(question).to have_errors_on(:question).only.exactly(1)
     end
 
     it 'has maximum length of 1000 characters' do
       question.question = 'a' * 1001
-      expect(question).to have_errors_on(:question).only
+      expect(question).to have_errors_on(:question).only.exactly(1)
     end
   end
 end

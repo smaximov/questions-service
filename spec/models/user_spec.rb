@@ -11,44 +11,44 @@ RSpec.describe User, type: :model do
   describe '#username' do
     it 'is required' do
       user.username = nil
-      expect(user).to have_errors_on(:username).only
+      expect(user).to have_errors_on(:username).only.exactly(1)
     end
 
     it 'is unique' do
       FactoryGirl.create(:user, username: user.username)
-      expect(user).to have_errors_on(:username).only
+      expect(user).to have_errors_on(:username).only.exactly(1)
     end
 
     it 'contains only valid letters' do
       user.username = 'john doe'
-      expect(user).to have_errors_on(:username).only
+      expect(user).to have_errors_on(:username).only.exactly(1)
     end
 
     it 'has minimum length of 3' do
       user.username = 'jd'
-      expect(user).to have_errors_on(:username).only
+      expect(user).to have_errors_on(:username).only.exactly(1)
     end
 
     it 'has maximum length of 20' do
       user.username = 'a' * 21
-      expect(user).to have_errors_on(:username).only
+      expect(user).to have_errors_on(:username).only.exactly(1)
     end
   end
 
   describe '#fullname' do
     it 'is required' do
       user.fullname = nil
-      expect(user).to have_errors_on(:fullname).only
+      expect(user).to have_errors_on(:fullname).only.exactly(1)
     end
 
     it 'has minimum length of 5' do
       user.fullname = 'a' * 4
-      expect(user).to have_errors_on(:fullname).only
+      expect(user).to have_errors_on(:fullname).only.exactly(1)
     end
 
     it 'has maximum length of 30' do
       user.fullname = 'a' * 31
-      expect(user).to have_errors_on(:fullname).only
+      expect(user).to have_errors_on(:fullname).only.exactly(1)
     end
 
     it 'is stripped of surrounded whitespace' do
