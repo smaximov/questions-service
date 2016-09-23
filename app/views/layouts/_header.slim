@@ -12,8 +12,17 @@ nav.navbar.navbar-default
     #navbar-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li
-            = link_to 'Sign out', destroy_user_session_path, method: :delete
+          li.dropdown
+            a.dropdown-toggle (data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false")
+              i.glyphicon.glyphicon-user>
+              ' #{current_user.username}
+              span.caret
+            ul.dropdown-menu
+              li: a href="#" Profile
+              li.divider role="separator"
+              li
+                = link_to 'Sign out', destroy_user_session_path, method: :delete
         - else
           li
             = link_to 'Sign in', user_session_path

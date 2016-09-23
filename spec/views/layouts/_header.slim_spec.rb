@@ -19,8 +19,12 @@ RSpec.describe 'layouts/_header.slim', type: :view do
   end
 
   context 'when user is signed in' do
+    let(:user) { instance_double(User) }
+
     before do
+      allow(user).to receive(:username).and_return('likely-to_be.unique')
       allow(view).to receive(:user_signed_in?).and_return(true)
+      allow(view).to receive(:current_user).and_return(user)
       render
     end
 
@@ -30,6 +34,10 @@ RSpec.describe 'layouts/_header.slim', type: :view do
 
     it 'displays no sign in links' do
       expect(rendered).not_to have_link(nil, href: new_user_session_path)
+    end
+
+    it "displays the user's username" do
+      expect(rendered).to have_text('likely-to_be.unique')
     end
   end
 end
