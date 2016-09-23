@@ -12,6 +12,8 @@ nav.navbar.navbar-default
     #navbar-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
+          li
+            = link_to 'New question', new_question_path
           li.dropdown
             a.dropdown-toggle (data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false")

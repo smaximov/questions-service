@@ -20,6 +20,10 @@ RSpec.describe 'layouts/_header.slim', type: :view do
     it 'displays no sign out links' do
       expect(rendered).not_to have_link(nil, href: destroy_user_session_path)
     end
+
+    it 'displays no "new question" links' do
+      expect(rendered).not_to have_link(nil, href: new_question_path)
+    end
   end
 
   context 'when user is signed in' do
@@ -46,6 +50,10 @@ RSpec.describe 'layouts/_header.slim', type: :view do
 
     it "displays the user's username" do
       expect(rendered).to have_text('likely-to_be.unique')
+    end
+
+    it 'displays the "new question" link' do
+      expect(rendered).to have_link(nil, href: new_question_path, count: 1)
     end
   end
 end
