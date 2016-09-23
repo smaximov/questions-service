@@ -1,0 +1,5 @@
+.error_messages.alert.alert-danger
+  strong The form contains #{pluralize(errors.count, 'error')}:
+  ul
+    - errors.each do |error|
+      li = error

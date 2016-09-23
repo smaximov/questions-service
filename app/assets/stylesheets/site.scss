@@ -17,3 +17,7 @@
 main.container {
   @extend .spacer;
 }
+
+.error_messages > ul {
+  padding-left: 20px;
+}
