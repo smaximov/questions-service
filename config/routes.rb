@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :questions, only: %i(new create show)
+  get '/questions', to: redirect('/questions/new')
 end
