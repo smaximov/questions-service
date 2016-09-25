@@ -30,7 +30,7 @@ EXTRA_USERS.times do |n|
                       created_at: 1.year.ago, confirmed_at: 1.year.ago + 5.minutes)
 
   rand(0..QUESTIONS_PER_USER).times do
-    user.questions.create!(title: Faker::Hipster.sentence.truncate(50),
+    user.questions.create!(title: Faker::Hipster.sentence.truncate(200),
                            question: Faker::Hipster.paragraph(5),
                            created_at: Faker::Time.between(user.created_at, Time.current))
   end

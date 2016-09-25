@@ -30,13 +30,13 @@ RSpec.describe Question, type: :model do
       expect(question.title).to eq('Question Title')
     end
 
-    it 'has minimun length of 10 characters' do
+    it 'is at least 10 characters' do
       question.title = 'a' * 9
       expect(question).to have_errors_on(:title).only.exactly(1)
     end
 
-    it 'has maximum length of 50 characters' do
-      question.title = 'a' * 51
+    it 'is at most 200 characters' do
+      question.title = 'a' * 201
       expect(question).to have_errors_on(:title).only.exactly(1)
     end
   end
@@ -52,13 +52,13 @@ RSpec.describe Question, type: :model do
       expect(question.question).to eq('Question Body')
     end
 
-    it 'has minimum length of 20 characters' do
+    it 'is at least 20 characters' do
       question.question = 'a' * 19
       expect(question).to have_errors_on(:question).only.exactly(1)
     end
 
-    it 'has maximum length of 1000 characters' do
-      question.question = 'a' * 1001
+    it 'is at most 5000 characters' do
+      question.question = 'a' * 5001
       expect(question).to have_errors_on(:question).only.exactly(1)
     end
   end
