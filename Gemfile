@@ -32,6 +32,9 @@ group :development do
   gem 'rubocop', '~> 0.42.0'
   gem 'guard-rspec', '~> 4.7.3', require: false
   gem 'foreman', '~> 0.82.0'
+  gem 'better_errors', '~> 2.1.1'
+  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'awesome_print', '~> 1.7.0'
 end
 
 group :test do
