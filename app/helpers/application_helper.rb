@@ -16,4 +16,16 @@ module ApplicationHelper
       concat ')'
     end
   end
+
+  # Display/Provide page title.
+  def page_title(title = nil)
+    if title.nil?
+      sub_title = content_for(:title).try do |t|
+        t.truncate(50) + ' - '
+      end
+      "#{sub_title}Questions Service"
+    else
+      provide(:title, title)
+    end
+  end
 end
