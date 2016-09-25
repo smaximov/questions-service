@@ -31,6 +31,10 @@ main.container {
   }
 }
 
+.question-body {
+  margin-bottom: 15px;
+}
+
 .question-summary > h3 {
   margin-top: 0;
 }
@@ -47,6 +51,7 @@ main.container {
 
 .time {
   border-bottom: 1px dotted black;
+  cursor: pointer;
 }
 
 .answer-count {

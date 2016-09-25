@@ -1,11 +1,16 @@
 .question
-  .question-stats
-    .answer-count 0
-    .small answers
+  - if local_assigns[:brief]
+    .question-stats
+      .answer-count 0
+      .small answers
   .question-summary
     h3 = link_to question.title, question
-    .question-info
-      => imprint(question.author)
-      ' asked
-      span.time> #{time_ago_in_words(question.created_at)}
-      | ago
+  - unless local_assigns.key?(:brief)
+    .question-body
+      = question.question
+  .question-info
+    => imprint(question.author)
+    ' asked
+    time.time (datetime=question.created_at.iso8601
+               title=question.created_at)
+      | #{time_ago_in_words(question.created_at)} ago

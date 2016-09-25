@@ -1,5 +1,5 @@
 .row
-  .col-xs-12
+  .col-xs-12.col-md-8.col-md-offset-2
     h1 Questions Service
     - unless user_signed_in?
       p
@@ -16,5 +16,5 @@
           => link_to 'Sign in', new_user_session_path
           | to ask one!
     - else
-      = render @questions
+      = render @questions, brief: true
       = paginate @questions
