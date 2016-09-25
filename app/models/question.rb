@@ -2,6 +2,10 @@
 class Question < ApplicationRecord
   include Strippable
 
+  paginates_per 10
+
+  default_scope { order(created_at: :desc) }
+
   belongs_to :author, class_name: :User
 
   validates :title, presence: true

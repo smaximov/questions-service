@@ -1,0 +1,6 @@
+ul.nav.nav-tabs
+  li class=('active' if tabs.latest?) role="presentation"
+    = link_to 'Latest', root_path
+  - if user_signed_in?
+    li class=('active' if tabs.mine?) role="presentation"
+      = link_to 'My Questions', root_path(tab: 'mine')

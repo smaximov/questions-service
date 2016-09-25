@@ -6,3 +6,15 @@
         ' Have a question?
         = link_to 'Sign up', new_user_registration_path
         ' !
+    = render 'tabs'
+    - if @questions.empty?
+      p.spacer
+        ' There're no questions here yet.
+        - if user_signed_in?
+          = link_to 'Ask one!', new_question_path
+        - else
+          => link_to 'Sign in', new_user_session_path
+          | to ask one!
+    - else
+      = render @questions
+      = paginate @questions

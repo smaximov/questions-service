@@ -21,3 +21,38 @@ main.container {
 .error_messages > ul {
   padding-left: 20px;
 }
+
+.question {
+  @extend .clearfix;
+  padding: 15px 0;
+
+  + .question {
+    border-top: 1px solid lightgray;
+  }
+}
+
+.question-summary > h3 {
+  margin-top: 0;
+}
+
+.question-stats {
+  border: 1px solid transparent;
+  float: left;
+  width: 65px;
+  padding: 0 5px 5px 0;
+  box-sizing: border-box;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.time {
+  border-bottom: 1px dotted black;
+}
+
+.answer-count {
+  font-size: 150%;
+}
+
+.imprint > .username {
+  color: gray;
+}

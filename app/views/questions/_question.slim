@@ -1,0 +1,11 @@
+.question
+  .question-stats
+    .answer-count 0
+    .small answers
+  .question-summary
+    h3 = link_to question.title, question
+    .question-info
+      => imprint(question.author)
+      ' asked
+      span.time> #{time_ago_in_words(question.created_at)}
+      | ago
