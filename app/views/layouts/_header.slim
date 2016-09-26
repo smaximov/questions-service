@@ -7,7 +7,7 @@ nav.navbar.navbar-default
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand href=root_path Questions
+      a.navbar-brand href=root_path #{t('shared.links.app.brand')}
 
     #navbar-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
@@ -24,7 +24,7 @@ nav.navbar.navbar-default
               = change_locale_link(:ru)
         - if user_signed_in?
           li
-            = link_to 'New question', new_question_path
+            = link_to t('shared.links.new_question'), new_question_path
           li.dropdown
             a.user-menu.dropdown-toggle (data-toggle="dropdown" role="button"
                                          aria-haspopup="true" aria-expanded="false")
@@ -32,12 +32,12 @@ nav.navbar.navbar-default
               ' #{current_user.username}
               span.caret
             ul.dropdown-menu
-              li: a href="#" Profile
+              li: a href="#" #{t('shared.links.profile')}
               li.divider role="separator"
               li
-                = link_to 'Sign out', destroy_user_session_path, method: :delete
+                = link_to t('shared.links.sign_out'), destroy_user_session_path, method: :delete
         - else
           li
-            = link_to 'Sign up', new_user_registration_path
+            = link_to t('devise.shared.links.sign_up'), new_user_registration_path
           li
-            = link_to 'Sign in', user_session_path
+            = link_to t('devise.shared.links.sign_in'), user_session_path

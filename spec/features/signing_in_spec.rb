@@ -12,7 +12,7 @@ RSpec.feature 'Signing in' do
       click_button 'Log in'
     end
     expect(page).to have_css('.flash-messages .alert-notice', text: 'successfully')
-    expect(page).to have_current_path(root_path(locale: I18n.default_locale))
+    expect(page).to have_current_path(root_path(locale: I18n.locale))
   end
 
   scenario 'Using email as login' do
@@ -23,6 +23,6 @@ RSpec.feature 'Signing in' do
       click_button 'Log in'
     end
     expect(page).to have_css('.flash-messages .alert-notice', text: 'successfully')
-    expect(page).to have_current_path(root_path(locale: I18n.default_locale))
+    expect(page).to have_current_path(root_path(locale: I18n.locale))
   end
 end

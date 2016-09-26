@@ -25,7 +25,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Title', with: 'Title with sufficient length'
         click_button 'Create'
       end
-      expect(page).to have_current_path(questions_path(locale: I18n.default_locale))
+      expect(page).to have_current_path(questions_path(locale: I18n.locale))
       expect(page).to have_css('.error_messages')
     end
 
@@ -36,7 +36,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Question', with: 'Too short'
         click_button 'Create'
       end
-      expect(page).to have_current_path(questions_path(locale: I18n.default_locale))
+      expect(page).to have_current_path(questions_path(locale: I18n.locale))
       expect(page).to have_css('.error_messages')
     end
 

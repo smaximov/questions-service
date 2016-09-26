@@ -13,3 +13,10 @@ ru:
       language: Язык
       en: English
       ru: Русский
+    links:
+      sign_out: Выйти
+      profile: Профиль
+      new_question: Задать вопрос
+      app:
+        brand: Вопросы
+        name: Сервис Вопросы

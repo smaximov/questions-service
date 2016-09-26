@@ -34,3 +34,10 @@ en:
       language: Language
       en: English
       ru: Русский
+    links:
+      sign_out: Sign out
+      profile: Profile
+      new_question: New question
+      app:
+        brand: Questions
+        name: Questions Service
