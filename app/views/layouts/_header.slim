@@ -11,12 +11,23 @@ nav.navbar.navbar-default
 
     #navbar-collapse.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
+        li.dropdown
+          a.change_locale.dropdown-toggle (data-toggle="dropdown" role="button"
+                                           aria-haspopup="true" aria-expanded="false")
+            i.glyphicon.glyphicon-flag>
+            ' #{t('shared.locale.language')}
+            span.caret
+          ul.dropdown-menu
+            li
+              = change_locale_link(:en)
+            li
+              = change_locale_link(:ru)
         - if user_signed_in?
           li
             = link_to 'New question', new_question_path
           li.dropdown
-            a.dropdown-toggle (data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false")
+            a.user-menu.dropdown-toggle (data-toggle="dropdown" role="button"
+                                         aria-haspopup="true" aria-expanded="false")
               i.glyphicon.glyphicon-user>
               ' #{current_user.username}
               span.caret

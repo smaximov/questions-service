@@ -8,7 +8,7 @@ RSpec.describe QuestionsController, type: :controller do
     context 'when user is signed out' do
       it 'redirects to the sign in page' do
         get :new
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(new_user_session_path(locale: nil))
       end
     end
 

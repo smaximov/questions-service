@@ -28,4 +28,9 @@ module ApplicationHelper
       provide(:title, title)
     end
   end
+
+  # Return link to the current page in an alternative locale.
+  def change_locale_link(locale)
+    link_to t(locale, scope: %i(shared locale)), url_for(locale: locale)
+  end
 end

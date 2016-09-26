@@ -26,3 +26,11 @@ en:
       last: '&raquo;'
       previous: '&lsaquo;'
       next: '&rsaquo;'
+      truncate: "&hellip;"
+  shared:
+    # 2 days t('shared.ago') => 2 days ago:
+    ago: ago
+    locale:
+      language: Language
+      en: English
+      ru: Русский

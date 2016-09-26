@@ -12,14 +12,7 @@ RSpec.feature 'Question creation' do
   end
 
   context 'When the user is signed in' do
-    background do
-      visit new_user_session_path
-      within('#new_user') do
-        fill_in 'Login', with: user.email
-        fill_in 'Password', with: user.password
-        click_button 'Log in'
-      end
-    end
+    background { login_as user }
 
     scenario 'Visiting question creation path' do
       visit new_question_path
@@ -32,7 +25,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Title', with: 'Title with sufficient length'
         click_button 'Create'
       end
-      expect(page).to have_current_path(questions_path)
+      expect(page).to have_current_path(questions_path(locale: I18n.default_locale))
       expect(page).to have_css('.error_messages')
     end
 
@@ -43,7 +36,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Question', with: 'Too short'
         click_button 'Create'
       end
-      expect(page).to have_current_path(questions_path)
+      expect(page).to have_current_path(questions_path(locale: I18n.default_locale))
       expect(page).to have_css('.error_messages')
     end
 

@@ -6,7 +6,7 @@ RSpec.describe HomeController, type: :controller do
     context 'when user is not signed in' do
       it 'redirects to the sign in page' do
         get_mine_tab
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(new_user_session_path(locale: nil))
       end
     end
 

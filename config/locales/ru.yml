@@ -1,0 +1,15 @@
+ru:
+  views:
+    pagination:
+      first: '&laquo;'
+      last: '&raquo;'
+      previous: '&lsaquo;'
+      next: '&rsaquo;'
+      truncate: "&hellip;"
+  shared:
+    # 2 дня t('shared.ago') => 2 дня назад:
+    ago: назад
+    locale:
+      language: Язык
+      en: English
+      ru: Русский

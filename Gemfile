@@ -16,7 +16,10 @@ gem 'slim-rails', '~> 3.1.1'
 gem 'devise', '~> 4.2.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'kaminari', '~> 0.17.0'
-
+gem 'http_accept_language', '~> 2.0.5'
+gem 'rails-i18n', '~> 5.0.1'
+gem 'devise-i18n', '~> 1.1.0
+'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5.2'
@@ -39,6 +42,9 @@ end
 
 group :test do
   gem 'capybara', '~> 2.9.0'
+  gem 'capybara-webkit', '~> 1.1.0'
+  gem 'database_cleaner', '~> 1.5.3'
+  gem 'launchy'
 end
 
 group :production do

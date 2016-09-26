@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  root 'home#index'
+  def available_locales
+    @available_locales ||= /#{I18n.available_locales.join('|')}/
+  end
 
-  devise_for :users
+  scope '(:locale)', locale: available_locales do
+    root 'home#index'
 
-  resources :questions, only: %i(new create show)
-  get '/questions', to: redirect('/questions/new')
+    devise_for :users
+
+    resources :questions, only: %i(new create show)
+  end
 end
