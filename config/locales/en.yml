@@ -41,3 +41,27 @@ en:
       app:
         brand: Questions
         name: Questions Service
+  helpers:
+    placeholder:
+      user:
+        login: Profile name or email
+        username: For example, john.doe
+        fullname: For example, John Doe
+  activerecord:
+    attributes:
+      user:
+        login: Login
+        username: Profile name
+        fullname: Full name
+  devise:
+    sessions:
+      new:
+        login: Login
+  help:
+    user:
+      password_length:
+        one: "%{count} character minimum."
+        other: "%{count} characters minimum."
+      username: >-
+        Allowed: latin letters, digits, underscore, hyphen, and dot. Examples
+        of valid profile names: johndoe, john-doe.007, john_doe42.

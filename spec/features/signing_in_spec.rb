@@ -9,7 +9,7 @@ RSpec.feature 'Signing in' do
     within('#new_user') do
       fill_in 'Login', with: user.username
       fill_in 'Password', with: user.password
-      click_button 'Log in'
+      click_button I18n.t('devise.sessions.new.sign_in')
     end
     expect(page).to have_css('.flash-messages .alert-notice', text: 'successfully')
     expect(page).to have_current_path(root_path(locale: I18n.locale))
@@ -20,7 +20,7 @@ RSpec.feature 'Signing in' do
     within('#new_user') do
       fill_in 'Login', with: user.email
       fill_in 'Password', with: user.password
-      click_button 'Log in'
+      click_button I18n.t('devise.sessions.new.sign_in')
     end
     expect(page).to have_css('.flash-messages .alert-notice', text: 'successfully')
     expect(page).to have_current_path(root_path(locale: I18n.locale))

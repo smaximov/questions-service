@@ -20,3 +20,29 @@ ru:
       app:
         brand: Вопросы
         name: Сервис Вопросы
+  helpers:
+    placeholder:
+      user:
+        login: Название профиля или email
+        username: Например, ivanov.ivan
+        fullname: Например, Иванов Иван
+  activerecord:
+    attributes:
+      user:
+        login: Логин
+        username: Название профиля
+        fullname: Полное имя
+  devise:
+    sessions:
+      new:
+        login: Вход
+  help:
+    user:
+      password_length:
+        one: "Минимум %{count} символ."
+        few: "Минимум %{count} символа."
+        many: "Минимум %{count} символов."
+        other: "Минимум %{count} символа."
+      username: >-
+        Разрешены: латинские символы, цифры, подчёркивание, дефис и точка. Примеры
+        корректных названий профиля: ivanov, ivan-ivanov.007, ivanov_ivan42
