@@ -4,7 +4,7 @@ module ApplicationHelper
   def error_messages_for(resource)
     return if resource.errors.blank?
 
-    render 'shared/error_messages', errors: resource.errors.full_messages
+    render 'shared/error_messages', resource: resource
   end
 
   # Render user's fullname and username.
