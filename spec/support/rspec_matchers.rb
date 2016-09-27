@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'rspec/matchers/fail_matchers'
 
 RSpec::Matchers.define :have_errors_on do |attr|
   attr_reader :object_errors, :attr_errors, :attr_has_errors
@@ -43,7 +44,7 @@ RSpec::Matchers.define :have_errors_on do |attr|
 
   define_method :message_for_exact_error_count do |object|
     message = String.new
-    message << "expected #{object.inspect} to have exactly #{@errors_count} error(s) on :username"
+    message << "expected #{object.inspect} to have exactly #{@errors_count} error(s) on #{attr.inspect}"
     message << ' only' if @ensure_errors_on_attr_only
     message << ", but it has #{@attr_errors.count}"
     append_rest_error_messages(message) if
@@ -114,4 +115,8 @@ RSpec::Matchers.define :have_errors_on do |attr|
   def attr_has_errors?
     attr_has_errors && attr_errors.count == (@errors_count || attr_errors.count)
   end
+end
+
+RSpec.configure do |config|
+  config.include RSpec::Matchers::FailMatchers, type: :matcher
 end

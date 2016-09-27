@@ -314,6 +314,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-i18n (~> 5.0.1)
   rails_12factor
+  rspec-expectations
   rspec-rails (~> 3.5.2)
   rubocop (~> 0.42.0)
   sass-rails (~> 5.0)
