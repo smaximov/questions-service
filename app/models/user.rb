@@ -4,6 +4,17 @@ class User < ApplicationRecord
 
   has_many :questions, foreign_key: :author_id
 
+  # ActiveModel::Errors uses OrderedHash, so the order
+  # validations appear in the model defines the order
+  # of displayed error messages.
+  validates :username, presence: true
+  validates :username, uniqueness: true
+  validates :username, format: /\A[\da-zA-Z._\-]+\z/, allow_blank: true
+  validates :username, length: { within: 3..20 }, allow_blank: true
+
+  validates :fullname, presence: true
+  validates :fullname, length: { within: 5..30 }, allow_blank: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,14 +23,6 @@ class User < ApplicationRecord
 
   # Virtual attribute for authentication by either username or email
   attr_accessor :login
-
-  validates :username, presence: true
-  validates :username, uniqueness: true
-  validates :username, format: /\A[\da-zA-Z._\-]+\z/, allow_blank: true
-  validates :username, length: { within: 3..20 }, allow_blank: true
-
-  validates :fullname, presence: true
-  validates :fullname, length: { within: 5..30 }, allow_blank: true
 
   strip :fullname
 

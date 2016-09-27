@@ -8,6 +8,14 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
+  describe '#errors' do
+    before { subject.save }
+
+    it 'is displayed in the particular order' do
+      expect(subject.errors.keys).to eq(%i(username fullname email password))
+    end
+  end
+
   describe '#username' do
     it 'is required' do
       user.username = nil
