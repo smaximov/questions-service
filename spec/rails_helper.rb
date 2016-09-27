@@ -12,7 +12,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 
 require 'support/rspec_matchers'
-require 'support/devise_integration'
+require 'support/devise'
 require 'support/database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
