@@ -12,4 +12,5 @@ guard :rspec, cmd: 'bundle exec rspec' do
      "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
      "spec/acceptance/#{m[1]}_spec.rb"]
   end
+  watch(%r{^spec/support/matchers/(.+)\.rb$}) { |m| "spec/matchers/#{m[1]}_spec.rb" }
 end

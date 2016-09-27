@@ -11,7 +11,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 
-require 'support/rspec_matchers'
+require 'support/matchers'
 require 'support/devise'
 require 'support/database_cleaner'
 

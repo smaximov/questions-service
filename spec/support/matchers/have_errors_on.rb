@@ -116,7 +116,3 @@ RSpec::Matchers.define :have_errors_on do |attr|
     attr_has_errors && attr_errors.count == (@errors_count || attr_errors.count)
   end
 end
-
-RSpec.configure do |config|
-  config.include RSpec::Matchers::FailMatchers, type: :matcher
-end
