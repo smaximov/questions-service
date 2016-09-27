@@ -168,6 +168,52 @@ RSpec.describe :have_errors_on, type: :matcher do
     end
   end
 
+  describe 'chain :message' do
+    it 'succeeds on errored attributes with matching messages' do
+      object = model.new
+
+      expect {
+        expect(object).to have_errors_on(:attr1).message(:blank)
+        expect(object).to have_errors_on(:attr2).message(:blank)
+        expect(object).to have_errors_on(:attr2).message(:invalid)
+      }.not_to raise_error
+    end
+
+    it 'succeeds on messages with interpolation options' do
+      object = model.new(valid_attributes(attr1: 'too long attribute value'))
+
+      expect {
+        expect(object).to have_errors_on(:attr1).message(:too_long, count: 4)
+      }.not_to raise_error
+    end
+
+    it 'fails on attributes with no matching messages' do
+      object = model.new
+
+      expect {
+        expect(object).to have_errors_on(:attr1).message(:invalid)
+      }.to fail_including('Expected :attr1 to have error :invalid')
+    end
+  end
+
+  describe 'chain :message negated' do
+    it 'fails on errored attributes with matching messages' do
+      object = model.new
+
+      expect {
+        expect(object).not_to have_errors_on(:attr1).message(:blank)
+      }.to fail_including('Expected :attr1 not to have error :blank')
+    end
+
+    it 'succeeds on errored attributes with no matching messages' do
+      object = model.new
+
+      expect {
+        expect(object).not_to have_errors_on(:attr1).message(:invalid)
+      }.not_to raise_error
+    end
+  end
+
   def valid_attributes(options = {})
     { attr1: 'foo', attr2: '42' }.merge(options)
   end

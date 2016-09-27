@@ -8,6 +8,7 @@ RSpec::Matchers.define :have_errors_on do |attr|
     validate_matcher(object)
     validate_chain_only(object)
     validate_chain_exactly(object)
+    validate_chain_message(object)
 
     valid?
   end
@@ -18,8 +19,10 @@ RSpec::Matchers.define :have_errors_on do |attr|
       @errors_count.nil?
 
     validate_object(object)
-    validate_matcher(object, negated: true) unless chain?(:only)
+    validate_matcher(object, negated: true) unless chain?
     validate_chain_only(object, negated: true)
+    validate_chain_message(object, negated: true)
+
     valid?
   end
 
@@ -38,16 +41,31 @@ RSpec::Matchers.define :have_errors_on do |attr|
     chain(:exactly)
   end
 
+  # Match is valid if attr contains specific error message.
+  #
+  # See the following resources on how the message key is
+  # converted to the actual message:
+  # - ActiveMode::Errors#generate_message
+  # - http://guides.rubyonrails.org/i18n.html#error-message-scopes
+  # - http://guides.rubyonrails.org/i18n.html#error-message-interpolation
+  chain :message do |message, options = {}|
+    @message = message
+    @message_options = options
+    chain(:message)
+  end
+
   failure_message do |object|
     message = String.new(super())
     append_chain_only_message(object, message) unless valid[:only]
     append_chain_exactly_message(object, message) unless valid[:exactly]
+    append_chain_message_message(object, message) unless valid[:message]
     message
   end
 
   failure_message_when_negated do |object|
     message = String.new(super())
     append_chain_only_message(object, message, negated: true) unless valid[:only]
+    append_chain_message_message(object, message, negated: true) unless valid[:message]
     message
   end
 
@@ -83,6 +101,19 @@ RSpec::Matchers.define :have_errors_on do |attr|
     valid[:exactly] = object.errors[attr].count == @errors_count
   end
 
+  define_method :validate_chain_message do |object, negated: false|
+    return unless chain?(:message)
+
+    tested_message = object.errors.generate_message(attr, @message, @message_options)
+    contains_message = object.errors[attr].include?(tested_message)
+
+    valid[:message] = if negated
+                        !contains_message
+                      else
+                        contains_message
+                      end
+  end
+
   define_method :append_chain_only_message do |object, message, negated: false|
     return unless chain?(:only)
 
@@ -104,6 +135,16 @@ RSpec::Matchers.define :have_errors_on do |attr|
     message << "\nExpected exactly #{@errors_count} error(s) on :#{attr}, got #{object.errors[attr].count}"
   end
 
+  define_method :append_chain_message_message do |_object, message, negated: false|
+    return unless chain?(:message)
+
+    message << if negated
+                 "\nExpected :#{attr} not to have error #{@message.inspect}}"
+               else
+                 "\nExpected :#{attr} to have error #{@message.inspect}}"
+               end
+  end
+
   private
 
   def valid
@@ -118,8 +159,12 @@ RSpec::Matchers.define :have_errors_on do |attr|
     chain_registry[chain] = true
   end
 
-  def chain?(chain)
-    chain_registry[chain]
+  def chain?(chain = nil)
+    if chain.nil?
+      !chain_registry.empty?
+    else
+      chain_registry[chain]
+    end
   end
 
   def chain_registry
