@@ -25,6 +25,11 @@ RSpec.describe Question, type: :model do
       expect(question).to have_errors_on(:title).only.exactly(1)
     end
 
+    it 'is non-blank' do
+      question.title = ''
+      expect(question).to have_errors_on(:title).only.exactly(1)
+    end
+
     it 'is stripped of surrounding whitespace' do
       question.title = " Question Title \n\t"
       expect(question.title).to eq('Question Title')
@@ -44,6 +49,11 @@ RSpec.describe Question, type: :model do
   describe '#question' do
     it 'is required' do
       question.question = nil
+      expect(question).to have_errors_on(:question).only.exactly(1)
+    end
+
+    it 'is non-blank' do
+      question.question = ''
       expect(question).to have_errors_on(:question).only.exactly(1)
     end
 

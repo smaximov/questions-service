@@ -14,6 +14,11 @@ RSpec.describe User, type: :model do
       expect(user).to have_errors_on(:username).only.exactly(1)
     end
 
+    it 'is non-blank' do
+      user.username = ''
+      expect(user).to have_errors_on(:username).only.exactly(1)
+    end
+
     it 'is unique' do
       FactoryGirl.create(:user, username: user.username)
       expect(user).to have_errors_on(:username).only.exactly(1)
@@ -38,6 +43,11 @@ RSpec.describe User, type: :model do
   describe '#fullname' do
     it 'is required' do
       user.fullname = nil
+      expect(user).to have_errors_on(:fullname).only.exactly(1)
+    end
+
+    it 'is non-blank' do
+      user.fullname = ''
       expect(user).to have_errors_on(:fullname).only.exactly(1)
     end
 
