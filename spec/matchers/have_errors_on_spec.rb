@@ -36,10 +36,10 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).to have_errors_on(:attr1)
-      }.to fail_including('to have errors on :attr1, but it has none')
+      }.to fail_including('to have errors on :attr1')
       expect {
         expect(object).to have_errors_on(:attr2)
-      }.to fail_including('to have errors on :attr2, but it has none')
+      }.to fail_including('to have errors on :attr2')
     end
 
     it 'succeeds on invalid attributes' do
@@ -58,10 +58,10 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).to have_errors_on(:attr1).only
-      }.to fail_including('to have errors on :attr1 only, but it has none')
+      }.to fail_including('to have errors on :attr1 only')
       expect {
         expect(object).to have_errors_on(:attr2).only
-      }.to fail_including('to have errors on :attr2 only, but it has none')
+      }.to fail_including('to have errors on :attr2 only')
     end
 
     it 'fails when multiple attributes are invalid' do
@@ -69,10 +69,10 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).to have_errors_on(:attr1).only
-      }.to fail_with(/to have errors on :attr1 only.*errors on other attributes \(:attr2\)/m)
+      }.to fail_including('Expected errors on attr :attr1 only, got other on [:attr2]')
       expect {
         expect(object).to have_errors_on(:attr2).only
-      }.to fail_with(/to have errors on :attr2 only.*errors on other attributes \(:attr1\)/m)
+      }.to fail_including('Expected errors on attr :attr2 only, got other on [:attr1]')
     end
 
     it 'succeeds on a single invalid attribute' do
@@ -90,10 +90,10 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).to have_errors_on(:attr1).exactly(1)
-      }.to fail_including('to have exactly 1 error(s) on :attr1, but it has 0')
+      }.to fail_including('Expected exactly 1 error(s) on :attr1, got 0')
       expect {
         expect(object).to have_errors_on(:attr2).exactly(2)
-      }.to fail_including('to have exactly 2 error(s) on :attr2, but it has 0')
+      }.to fail_including('Expected exactly 2 error(s) on :attr2, got 0')
     end
 
     it "fails when the errors count doesn't match the expected value" do
@@ -101,7 +101,7 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).to have_errors_on(:attr2).exactly(1)
-      }.to fail_including('to have exactly 1 error(s) on :attr2, but it has 2')
+      }.to fail_including('Expected exactly 1 error(s) on :attr2, got 2')
     end
 
     it 'succeeds when errors count matches the expected value' do
@@ -156,7 +156,7 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).not_to have_errors_on(:attr1).only
-      }.to fail_including(":attr1 doesn't have errors")
+      }.to fail_including('Expected :attr1 to have errors')
     end
 
     it 'fails when the object has additional errors' do
@@ -164,7 +164,7 @@ RSpec.describe :have_errors_on, type: :matcher do
 
       expect {
         expect(object).not_to have_errors_on(:attr1).only
-      }.to fail_including('no other errors except on :attr1')
+      }.to fail_including('Expected to have other errors than on :attr1')
     end
   end
 
