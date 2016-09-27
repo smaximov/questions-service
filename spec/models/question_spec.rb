@@ -22,12 +22,12 @@ RSpec.describe Question, type: :model do
   describe '#title' do
     it 'is required' do
       question.title = nil
-      expect(question).to have_errors_on(:title).only.exactly(1)
+      expect(question).to have_errors_on(:title).only.exactly(1).message(:blank)
     end
 
     it 'is non-blank' do
       question.title = ''
-      expect(question).to have_errors_on(:title).only.exactly(1)
+      expect(question).to have_errors_on(:title).only.exactly(1).message(:blank)
     end
 
     it 'is stripped of surrounding whitespace' do
@@ -37,24 +37,24 @@ RSpec.describe Question, type: :model do
 
     it 'is at least 10 characters' do
       question.title = 'a' * 9
-      expect(question).to have_errors_on(:title).only.exactly(1)
+      expect(question).to have_errors_on(:title).only.exactly(1).message(:too_short, count: 10)
     end
 
     it 'is at most 200 characters' do
       question.title = 'a' * 201
-      expect(question).to have_errors_on(:title).only.exactly(1)
+      expect(question).to have_errors_on(:title).only.exactly(1).message(:too_long, count: 200)
     end
   end
 
   describe '#question' do
     it 'is required' do
       question.question = nil
-      expect(question).to have_errors_on(:question).only.exactly(1)
+      expect(question).to have_errors_on(:question).only.exactly(1).message(:blank)
     end
 
     it 'is non-blank' do
       question.question = ''
-      expect(question).to have_errors_on(:question).only.exactly(1)
+      expect(question).to have_errors_on(:question).only.exactly(1).message(:blank)
     end
 
     it 'is stripped of surrounding whitespace' do
@@ -64,12 +64,12 @@ RSpec.describe Question, type: :model do
 
     it 'is at least 20 characters' do
       question.question = 'a' * 19
-      expect(question).to have_errors_on(:question).only.exactly(1)
+      expect(question).to have_errors_on(:question).only.exactly(1).message(:too_short, count: 20)
     end
 
     it 'is at most 5000 characters' do
       question.question = 'a' * 5001
-      expect(question).to have_errors_on(:question).only.exactly(1)
+      expect(question).to have_errors_on(:question).only.exactly(1).message(:too_long, count: 5000)
     end
   end
 end
