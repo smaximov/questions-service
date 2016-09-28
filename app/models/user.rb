@@ -3,6 +3,7 @@ class User < ApplicationRecord
   include Strippable
 
   has_many :questions, foreign_key: :author_id
+  has_many :answers, foreign_key: :author_id
 
   # ActiveModel::Errors uses OrderedHash, so the order
   # validations appear in the model defines the order

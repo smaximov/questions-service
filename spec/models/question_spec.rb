@@ -81,4 +81,11 @@ RSpec.describe Question, type: :model do
       expect(question).to have_errors_on(:question).only.exactly(1).message(:too_long, count: 5000)
     end
   end
+
+  describe '#answers' do
+    it 'is a has_many association' do
+      assoc_type = Question.reflect_on_association(:answers).macro
+      expect(assoc_type).to be(:has_many)
+    end
+  end
 end

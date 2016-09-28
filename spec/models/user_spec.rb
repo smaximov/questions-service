@@ -81,4 +81,11 @@ RSpec.describe User, type: :model do
       expect(assoc_type).to be(:has_many)
     end
   end
+
+  describe '#answers' do
+    it 'is a has_many association' do
+      assoc_type = User.reflect_on_association(:answers).macro
+      expect(assoc_type).to be(:has_many)
+    end
+  end
 end

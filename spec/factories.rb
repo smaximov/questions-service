@@ -28,4 +28,12 @@ FactoryGirl.define do
     sequence(:question) { |n| "Body of the question ##{n} by #{author.fullname}" }
     author
   end
+
+  factory :answer do
+    sequence(:answer) do |n|
+      "Answer ##{n} by #{author.fullname} to the question by #{question.author.fullname}"
+    end
+    author
+    question
+  end
 end
