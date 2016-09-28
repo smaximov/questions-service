@@ -8,6 +8,9 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
+  it { is_expected.to have_many(:questions).foreign_key(:author_id) }
+  it { is_expected.to have_many(:answers).foreign_key(:author_id) }
+
   describe '#errors' do
     before { subject.save }
 
@@ -72,20 +75,6 @@ RSpec.describe User, type: :model do
     it 'is stripped of surrounded whitespace' do
       user.fullname = " John Doe \n\t"
       expect(user.fullname).to eq('John Doe')
-    end
-  end
-
-  describe '#questions' do
-    it 'is a has_many association' do
-      assoc_type = User.reflect_on_association(:questions).macro
-      expect(assoc_type).to be(:has_many)
-    end
-  end
-
-  describe '#answers' do
-    it 'is a has_many association' do
-      assoc_type = User.reflect_on_association(:answers).macro
-      expect(assoc_type).to be(:has_many)
     end
   end
 end

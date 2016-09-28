@@ -4,7 +4,7 @@ class Answer < ApplicationRecord
 
   paginates_per 15
 
-  belongs_to :author, class_name: :User
+  belongs_to :author, class_name: 'User'
   belongs_to :question
 
   default_scope { order(created_at: :desc) }

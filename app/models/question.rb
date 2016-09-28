@@ -6,7 +6,7 @@ class Question < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  belongs_to :author, class_name: :User
+  belongs_to :author, class_name: 'User'
   has_many :answers
 
   validates :title, presence: true

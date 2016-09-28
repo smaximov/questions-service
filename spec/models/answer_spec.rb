@@ -8,6 +8,9 @@ RSpec.describe Answer, type: :model do
     expect(answer).to be_valid
   end
 
+  it { is_expected.to belong_to(:author).class_name('User') }
+  it { is_expected.to belong_to(:question) }
+
   describe 'default scope' do
     it 'is descending on :created_at' do
       answer.save
@@ -41,28 +44,6 @@ RSpec.describe Answer, type: :model do
     it 'is stripped of surrounding whitespace' do
       answer.answer = " Answer Body \n\t"
       expect(answer.answer).to eq('Answer Body')
-    end
-  end
-
-  describe '#author' do
-    it 'is valid' do
-      expect(answer.author).to be_valid
-    end
-
-    it 'is a belongs_to association' do
-      assoc_type = Answer.reflect_on_association(:author).macro
-      expect(assoc_type).to be(:belongs_to)
-    end
-  end
-
-  describe '#question' do
-    it 'is valid' do
-      expect(answer.question).to be_valid
-    end
-
-    it 'is a belongs_to association' do
-      assoc_type = Answer.reflect_on_association(:question).macro
-      expect(assoc_type).to be(:belongs_to)
     end
   end
 end

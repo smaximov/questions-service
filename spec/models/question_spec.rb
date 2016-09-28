@@ -4,6 +4,9 @@ require 'rails_helper'
 RSpec.describe Question, type: :model do
   let(:question) { FactoryGirl.build(:question) }
 
+  it { is_expected.to belong_to(:author).class_name('User') }
+  it { is_expected.to have_many(:answers) }
+
   it 'has valid factory' do
     expect(question).to be_valid
   end
@@ -79,13 +82,6 @@ RSpec.describe Question, type: :model do
     it 'is at most 5000 characters' do
       question.question = 'a' * 5001
       expect(question).to have_errors_on(:question).only.exactly(1).message(:too_long, count: 5000)
-    end
-  end
-
-  describe '#answers' do
-    it 'is a has_many association' do
-      assoc_type = Question.reflect_on_association(:answers).macro
-      expect(assoc_type).to be(:has_many)
     end
   end
 end
