@@ -8,6 +8,15 @@ RSpec.describe Question, type: :model do
     expect(question).to be_valid
   end
 
+  describe 'default scope' do
+    it 'is descending on :created_at' do
+      question.save
+      # Create another question before the question was created
+      other_question = Timecop.freeze(1.day.ago) { FactoryGirl.create(:question) }
+      expect(Question.pluck(:id)).to eq([question.id, other_question.id])
+    end
+  end
+
   describe '#author' do
     it 'is valid' do
       expect(question.author).to be_valid

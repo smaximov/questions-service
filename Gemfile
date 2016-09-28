@@ -47,6 +47,7 @@ group :test do
   gem 'capybara-webkit', '~> 1.1.0'
   gem 'database_cleaner', '~> 1.5.3'
   gem 'launchy'
+  gem 'timecop', '~> 0.8.1'
 end
 
 group :production do
