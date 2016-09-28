@@ -13,4 +13,6 @@ guard :rspec, cmd: 'bundle exec rspec' do
      "spec/acceptance/#{m[1]}_spec.rb"]
   end
   watch(%r{^spec/support/matchers/(.+)\.rb$}) { |m| "spec/matchers/#{m[1]}_spec.rb" }
+  watch('config/i18n-tasks.yml') { 'spec/i18n_spec.rb' }
+  watch(%r{^config/locales/(.+)\.yml$}) { 'spec/i18n_spec.rb' }
 end

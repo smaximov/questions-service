@@ -26,6 +26,7 @@ group :development, :test do
   gem 'faker', '~> 1.6.6'
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'rspec-expectations'
+  gem 'i18n-tasks', '~> 0.9.5'
 end
 
 group :development do
