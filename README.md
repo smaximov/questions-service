@@ -1,5 +1,7 @@
 # README
 
+[![Build Status](https://travis-ci.org/smaximov/questions-service.svg?branch=master)](https://travis-ci.org/smaximov/questions-service)
+
 [Тестовое задание](http://antons-first-site-ddc360.webflow.io/)
 для вакансии от Daturum.
 
