@@ -1,19 +1,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: questions-service
+  username: postgres
+  password:
   database: questions-service_<%= Rails.env %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  host: 127.0.0.1
-  password: questions-service
 
 test:
   <<: *default
-  host: 127.0.0.1
-  password: questions-service
+
 
 production:
   <<: *default
