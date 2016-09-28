@@ -17,9 +17,9 @@ ru:
       sign_out: Выйти
       profile: Профиль
       new_question: Задать вопрос
-      app:
-        brand: Вопросы
-        name: Сервис Вопросы
+    app:
+      brand: Вопросы
+      name: Сервис Вопросы
   helpers:
     placeholder:
       user:

@@ -38,9 +38,9 @@ en:
       sign_out: Sign out
       profile: Profile
       new_question: New question
-      app:
-        brand: Questions
-        name: Questions Service
+    app:
+      brand: Questions
+      name: Questions Service
   helpers:
     placeholder:
       user:

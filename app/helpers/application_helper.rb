@@ -23,7 +23,7 @@ module ApplicationHelper
       sub_title = content_for(:title).try do |t|
         t.truncate(50) + ' - '
       end
-      "#{sub_title}#{t('shared.links.app.name')}"
+      "#{sub_title}#{t('shared.app.name')}"
     else
       provide(:title, title)
     end
