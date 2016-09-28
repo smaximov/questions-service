@@ -18,12 +18,12 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'kaminari', '~> 0.17.0'
 gem 'http_accept_language', '~> 2.0.5'
 gem 'rails-i18n', '~> 5.0.1'
-gem 'devise-i18n', '~> 1.1.0
-'
+gem 'devise-i18n', '~> 1.1.0'
+gem 'faker', '~> 1.6.6'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5.2'
-  gem 'faker', '~> 1.6.6'
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'rspec-expectations'
   gem 'i18n-tasks', '~> 0.9.5'
