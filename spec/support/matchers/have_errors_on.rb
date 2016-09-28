@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'rspec/matchers/fail_matchers'
 
 RSpec::Matchers.define :have_errors_on do |attr|
   # Match is valid if attr has errors.

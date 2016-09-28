@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
+require 'rspec/matchers/fail_matchers'
+
 # Load custom matchers
 Dir[File.join(__dir__, 'matchers/**/*.rb')].each { |f| require f }
 
