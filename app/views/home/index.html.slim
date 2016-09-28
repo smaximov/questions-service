@@ -3,18 +3,20 @@
     h1 Questions Service
     - unless user_signed_in?
       p
-        ' Have a question?
-        = link_to 'Sign up', new_user_registration_path
-        ' !
+        ' #{t('.have_a_question')}?
+        = link_to t('.sign_up'), new_user_registration_path
+        | !
     = render 'tabs'
     - if @questions.empty?
       p.spacer
-        ' There're no questions here yet.
+        ' #{t('.no_questions_yet')}.
         - if user_signed_in?
-          = link_to 'Ask one!', new_question_path
+          = link_to t('.ask_a_question'), new_question_path
+          | !
         - else
-          => link_to 'Sign in', new_user_session_path
-          | to ask one!
+          = t('.sign_in_to_ask_a_question.html',
+              sign_in_link: link_to(t('.sign_in'), new_user_session_path))
+          | !
     - else
       = render @questions, brief: true
       = paginate @questions

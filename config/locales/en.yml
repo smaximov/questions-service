@@ -79,3 +79,15 @@ en:
     new:
       new: New question
       create: Create
+  home:
+    index:
+      have_a_question: Have a question
+      sign_up: Sign up
+      no_questions_yet: "There're no questions here yet"
+      ask_a_question: Ask one
+      sign_in: Sign in
+      sign_in_to_ask_a_question:
+        html: "%{sign_in_link} to ask one"
+    tabs:
+      latest: Latest questions
+      mine: My questions

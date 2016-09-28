@@ -62,3 +62,15 @@ ru:
     new:
       new: Новый вопрос
       create: Создать
+  home:
+    index:
+      have_a_question: Есть вопрос
+      sign_up: Зарегистрируйтесь
+      no_questions_yet: Тут ещё нет вопросов
+      ask_a_question: Задать вопрос
+      sign_in: Войдите
+      sign_in_to_ask_a_question:
+        html: "%{sign_in_link}, чтобы задать вопрос"
+    tabs:
+      latest: Последние вопросы
+      mine: Мои вопросы
