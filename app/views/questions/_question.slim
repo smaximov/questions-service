@@ -3,7 +3,7 @@
   - if local_assigns[:brief]
     .question-stats
       .answer-count 0
-      .small answers
+      .small #{t('.answers', count: 0)}
 
   .question-details
     h3 = link_to question.title, question
@@ -14,7 +14,7 @@
 
     .question-info
       => imprint(question.author)
-      ' asked
+      ' #{t('.asked')}
       time.time (datetime=question.created_at.iso8601
                  title=question.created_at)
         | #{time_ago_in_words(question.created_at)} #{t('shared.ago')}

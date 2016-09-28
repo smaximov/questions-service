@@ -53,6 +53,9 @@ en:
         login: Login
         username: Profile name
         fullname: Full name
+      question:
+        title: Title
+        question: Question
   devise:
     sessions:
       new:
@@ -65,3 +68,12 @@ en:
       username: >-
         Allowed: latin letters, digits, underscore, hyphen, and dot. Examples
         of valid profile names: johndoe, john-doe.007, john_doe42.
+  questions:
+    question:
+      asked: asked
+      answers:
+        one: answer
+        other: answers
+    new:
+      new: New question
+      create: Create

@@ -32,6 +32,11 @@ ru:
         login: Логин
         username: Название профиля
         fullname: Полное имя
+      question:
+        title: Название
+        question: Вопрос
+    models:
+      question: Вопрос
   devise:
     sessions:
       new:
@@ -46,3 +51,14 @@ ru:
       username: >-
         Разрешены: латинские символы, цифры, подчёркивание, дефис и точка. Примеры
         корректных названий профиля: ivanov, ivan-ivanov.007, ivanov_ivan42
+  questions:
+    question:
+      asked: спросил(а)
+      answers:
+        one: ответ
+        few: ответа
+        many: ответов
+        other: ответа
+    new:
+      new: Новый вопрос
+      create: Создать
