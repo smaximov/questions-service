@@ -36,6 +36,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def answer
+    answer = Answer.find(params[:id])
+    redirect_to answer_path(answer)
+  end
+
   private
 
   def question_params

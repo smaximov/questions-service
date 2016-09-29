@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       post '/', to: 'questions#create_answer', as: :answers
     end
 
+    get '/answers/:id', to: 'questions#answer', as: :answers_permalink
+
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
     get '/questions', to: redirect(UrlHelpersRedirector.new_question_path)
   end

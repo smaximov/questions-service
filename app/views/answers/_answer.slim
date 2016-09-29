@@ -4,4 +4,8 @@
   .answer-info
     => imprint(answer.author)
     => t('.answered')
-    = relative_time_tag(answer.created_at)
+    => relative_time_tag(answer.created_at)
+    - unless local_assigns[:best]
+      | [
+      = link_to t('.permalink'), answers_permalink_path(answer.id)
+      | ]
