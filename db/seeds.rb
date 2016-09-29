@@ -33,7 +33,7 @@ zoevas_answer = <<ANSWER
 бывает открытой. За ней лежат утерянные архивы Ленинки
 ANSWER
 ivanovs_question.answers.create!(answer: zoevas_answer, author: zoeva,
-                                 created_at: Faker::Time.between(zoeva.confirmed_at, Time.current))
+                                 created_at: Faker::Time.between(ivanovs_question.created_at, Time.current))
 
 users = Array.new(EXTRA_USERS) do |n|
   user = User.create!(username: "user-#{n}", email: "user-#{n}@example.com",
