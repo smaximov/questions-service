@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: %i(new create create_answer)
+  before_action :authenticate_user!,
+                only: %i(new create create_answer mark_as_best cancel_best)
 
   def new
     @question = current_user.questions.build
@@ -39,6 +40,24 @@ class QuestionsController < ApplicationController
   def answer
     answer = Answer.find(params[:id])
     redirect_to answer_path(answer)
+  end
+
+  def mark_as_best
+    answer = Answer.find(params[:id])
+    return redirect_to question_path(answer.question) unless
+      current_user?(answer.question.author)
+
+    answer.mark_as_best
+    redirect_to answer_path(answer)
+  end
+
+  def cancel_best
+    answer = Answer.find(params[:id])
+    return redirect_to question_path(answer.question) unless
+      current_user?(answer.question.author)
+
+    answer.remove_best_mark
+    redirect_to question_path(answer.question)
   end
 
   private

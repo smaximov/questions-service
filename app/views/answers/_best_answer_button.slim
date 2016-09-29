@@ -1,0 +1,15 @@
+- if answer.best?
+  - if current_user?(answer.question.author)
+    = button_to(answer_cancel_best_path(answer.id), class: 'btn btn-success btn-xs',
+                                                    title: t('.cancel'),
+                                                    method: :delete) do
+      = t('.best')
+  - else
+    button.btn.btn-success.btn-xs type="button" disabled=true
+      = t('.best')
+- else
+  - if current_user?(answer.question.author)
+    = button_to(answer_mark_as_best_path(answer.id), class: 'btn btn-primary btn-xs',
+                                                     title: t('.mark'),
+                                                     method: :post) do
+      = t('.mark')

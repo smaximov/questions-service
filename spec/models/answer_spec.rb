@@ -96,4 +96,28 @@ RSpec.describe Answer, type: :model do
       end
     end
   end
+
+  describe '#mark_as_best' do
+    it 'marks the answer as the best answer to the corresponding question' do
+      expect(answer.question.best_answer).to be_nil
+      answer.mark_as_best
+      expect(answer.question.best_answer).to be(answer)
+    end
+  end
+
+  describe '#best?' do
+    context 'when the answer is not marked as the best' do
+      it 'is false' do
+        expect(answer).not_to be_best
+      end
+    end
+
+    context 'when the answer is marked as the best' do
+      before { answer.mark_as_best }
+
+      it 'is true' do
+        expect(answer).to be_best
+      end
+    end
+  end
 end

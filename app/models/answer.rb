@@ -23,4 +23,20 @@ class Answer < ApplicationRecord
     position = self.class.where('created_at >= ?', created_at).count
     (position.to_f / ANSWERS_PER_PAGE).ceil
   end
+
+  # Mark the answer as the best answer to the corresponding question.
+  def mark_as_best
+    question.update_attribute(:best_answer, self)
+  end
+
+  # Remove the best answer mark, if set.
+  def remove_best_mark
+    question.update_attribute(:best_answer, nil) if
+      question.best_answer == self
+  end
+
+  # Check if the answer is the best answer to the corresponding question
+  def best?
+    question.best_answer == self
+  end
 end

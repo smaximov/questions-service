@@ -38,7 +38,9 @@ Rails.application.routes.draw do
     post '/questions/new', to: 'questions#create', as: :questions
     post '/questions/:question_id', to: 'questions#create_answer', as: :question_answers
 
-    get '/answers/:id', to: 'questions#answer', as: :answers_permalink
+    get '/answers/:id', to: 'questions#answer', as: :answer_permalink
+    post '/answers/:id/best', to: 'questions#mark_as_best', as: :answer_mark_as_best
+    delete '/answers/:id/best', to: 'questions#cancel_best', as: :answer_cancel_best
 
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
   end

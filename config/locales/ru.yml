@@ -60,6 +60,7 @@ ru:
   questions:
     question:
       asked: спросил(а)
+      has_best: Один из ответов был отмечен автором вопроса как лучший
     new:
       new: Новый вопрос
       create: Создать
@@ -68,6 +69,7 @@ ru:
     show:
       answer: Ответить
       your_answer: Ваш ответ
+      best_answer: Лучший ответ
     create_answer:
       success: Новый ответ добавлен успешно!
   home:
@@ -86,3 +88,7 @@ ru:
     answer:
       answered: ответил(а)
       permalink: ссылка
+    best_answer_button:
+      best: Лучший ответ
+      cancel: Снять отметку
+      mark: Отметить как лучший ответ

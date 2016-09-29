@@ -41,7 +41,6 @@ main.container {
 }
 
 .question-stats {
-  border: 1px solid transparent;
   flex: 0 0 65px;
   padding: 0 5px 5px 0;
   margin-right: 10px;
@@ -50,6 +49,20 @@ main.container {
 
   .answer-count {
     font-size: 150%;
+  }
+
+  &.has-best {
+    border: 1px solid green;
+  }
+}
+
+.question-stats-answers {
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  .has-best & {
+    border: 1px solid green;
+    color: green;
   }
 }
 
@@ -70,6 +83,7 @@ main.container {
 .answer {
   padding: 15px;
   transition: background-color 1.5s;
+  border: 1px solid transparent;
 
   & + & {
     border-top: 1px solid lightgray;
@@ -101,4 +115,22 @@ main.container {
 
 .answer-body {
   margin-bottom: 15px;
+}
+
+.answer-header {
+  margin-bottom: 15px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.best-answer {
+  margin-bottom: 15px;
+
+  .button_to {
+    display: inline-block;
+  }
 }

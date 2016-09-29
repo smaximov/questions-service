@@ -1,11 +1,15 @@
 .answer id=("answer-#{answer.id}" unless local_assigns[:best])
+  - unless local_assigns[:best]
+    .answer-header
+      .best-answer-button
+        = render 'answers/best_answer_button', answer: answer
+      .answer-permalink
+        | [
+        = link_to t('.permalink'), answer_permalink_path(answer.id)
+        | ]
   .answer-body
     = answer.answer
   .answer-info
     => imprint(answer.author)
     => t('.answered')
     => relative_time_tag(answer.created_at)
-    - unless local_assigns[:best]
-      | [
-      = link_to t('.permalink'), answers_permalink_path(answer.id)
-      | ]

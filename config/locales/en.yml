@@ -77,6 +77,7 @@ en:
   questions:
     question:
       asked: asked
+      has_best: "One of the answers was marked by the question's author as best"
     new:
       new: New question
       create: Create
@@ -85,6 +86,7 @@ en:
     show:
       answer: Answer
       your_answer: Your answer
+      best_answer: Best answer
     create_answer:
       success: Successfully created new answer!
   home:
@@ -103,3 +105,7 @@ en:
     answer:
       answered: answered
       permalink: permalink
+    best_answer_button:
+      best: Best answer
+      cancel: Remove mark
+      mark: Mark as best answer

@@ -1,9 +1,10 @@
-.question
+.question class=('has-best' unless question.best_answer.nil?)
 
   - if local_assigns[:brief]
-    .question-stats
-      .answer-count #{question.answers.count}
-      .small #{t('shared.answers', count: question.answers.count)}
+    .question-stats title=(t('.has_best') unless question.best_answer.nil?)
+      .question-stats-answers
+        .answer-count #{question.answers.count}
+        .small #{t('shared.answers', count: question.answers.count)}
 
   .question-details
     h3 = link_to question.title, question

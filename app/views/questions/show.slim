@@ -1,7 +1,9 @@
 - page_title @question.title
 .row
   .col-xs-12.col-md-8.col-md-offset-2
+
     = render @question
+
     - if user_signed_in?
       = form_for(@answer, url: question_answers_path(@question.id)) do |f|
         = error_messages_for(@answer)
@@ -10,6 +12,19 @@
           = f.text_area :answer, class: 'form-control', rows: 10, autofocus: true
         .form-group
           = f.submit t('.answer'), class: 'btn btn-primary'
+
+    #best-answer.best-answer
+      - if @question.best_answer.present?
+        h3
+          => t('.best_answer')
+          - if current_user?(@question.author)
+            = button_to(answer_cancel_best_path(@question.best_answer.id),
+                        class: 'btn btn-danger btn-xs', title: t('answers.best_answer_button.cancel'),
+                        method: :delete) do
+              = t('answers.best_answer_button.cancel')
+
+        = render @question.best_answer, best: true
+
     .answers
       .answers-summary
         .answer-count #{@answers.total_count} #{t('shared.answers', count: @answers.total_count)}

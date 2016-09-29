@@ -28,6 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'rspec-expectations'
   gem 'i18n-tasks', '~> 0.9.5'
+  gem 'awesome_print', '~> 1.7.0'
 end
 
 group :development do
@@ -40,7 +41,6 @@ group :development do
   gem 'foreman', '~> 0.82.0'
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
-  gem 'awesome_print', '~> 1.7.0'
 end
 
 group :test do

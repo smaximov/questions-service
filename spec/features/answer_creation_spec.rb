@@ -31,7 +31,6 @@ RSpec.feature 'Answer creation' do
 
     scenario 'Entering valid answer' do
       answer = 'Answer with sufficient length (it has to be at least 20 characters)'
-
       within('#new_answer') do
         fill_in I18n.t('questions.show.your_answer'), with: answer
         click_button I18n.t('questions.show.answer')

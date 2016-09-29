@@ -37,4 +37,9 @@ module ApplicationHelper
   def relative_time_tag(time)
     timeago_tag(time, format: :long, class: 'time')
   end
+
+  # Return true if the authenticated user is `user`.
+  def current_user?(user)
+    user_signed_in? && current_user == user
+  end
 end
