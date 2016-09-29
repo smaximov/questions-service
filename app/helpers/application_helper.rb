@@ -33,4 +33,10 @@ module ApplicationHelper
   def change_locale_link(locale)
     link_to t(locale, scope: %i(shared locale)), url_for(locale: locale)
   end
+
+  def relative_time_tag(time)
+    content_tag('time', class: 'time', datetime: time.iso8601, title: l(time, format: :long)) do
+      "#{time_ago_in_words(time)} #{t('shared.ago')}"
+    end
+  end
 end

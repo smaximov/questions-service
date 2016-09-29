@@ -4,6 +4,4 @@
   .answer-info
     => imprint(answer.author)
     => t('.answered')
-    time.time (datetime=answer.created_at.iso8601
-                 title=answer.created_at)
-        | #{time_ago_in_words(answer.created_at)} #{t('shared.ago')}
+    = relative_time_tag(answer.created_at)
