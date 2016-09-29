@@ -2,8 +2,8 @@
 
   - if local_assigns[:brief]
     .question-stats
-      .answer-count 0
-      .small #{t('.answers', count: 0)}
+      .answer-count #{question.answers.count}
+      .small #{t('.answers', count: question.answers.count)}
 
   .question-details
     h3 = link_to question.title, question
