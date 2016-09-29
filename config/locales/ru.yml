@@ -20,6 +20,11 @@ ru:
     app:
       brand: Вопросы
       name: Сервис Вопросы
+    answers:
+      one: ответ
+      few: ответа
+      many: ответов
+      other: ответа
   helpers:
     placeholder:
       user:
@@ -54,11 +59,6 @@ ru:
   questions:
     question:
       asked: спросил(а)
-      answers:
-        one: ответ
-        few: ответа
-        many: ответов
-        other: ответа
     new:
       new: Новый вопрос
       create: Создать
@@ -74,3 +74,6 @@ ru:
     tabs:
       latest: Последние вопросы
       mine: Мои вопросы
+  answers:
+    answer:
+      answered: ответил(а)

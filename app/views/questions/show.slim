@@ -2,3 +2,9 @@
 .row
   .col-xs-12.col-md-8.col-md-offset-2
     = render @question
+    .answers
+      .answers-summary
+        .answer-count #{@answers.total_count} #{t('shared.answers', count: @answers.total_count)}
+        .answer-pages
+          = paginate @answers
+      = render @answers

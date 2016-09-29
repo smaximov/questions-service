@@ -41,6 +41,9 @@ en:
     app:
       brand: Questions
       name: Questions Service
+    answers:
+      one: answer
+      other: answers
   helpers:
     placeholder:
       user:
@@ -73,9 +76,6 @@ en:
   questions:
     question:
       asked: asked
-      answers:
-        one: answer
-        other: answers
     new:
       new: New question
       create: Create
@@ -91,3 +91,6 @@ en:
     tabs:
       latest: Latest questions
       mine: My questions
+  answers:
+    answer:
+      answered: answered

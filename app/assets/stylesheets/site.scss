@@ -27,7 +27,7 @@ main.container {
   display: flex;
   flex-direction: row;
 
-  + .question {
+  & + & {
     border-top: 1px solid lightgray;
   }
 }
@@ -47,15 +47,15 @@ main.container {
   margin-right: 10px;
   box-sizing: border-box;
   text-align: center;
+
+  .answer-count {
+    font-size: 150%;
+  }
 }
 
 .time {
   border-bottom: 1px dotted black;
   cursor: pointer;
-}
-
-.answer-count {
-  font-size: 150%;
 }
 
 .imprint > .username {
@@ -65,4 +65,35 @@ main.container {
 .devise-nav > ul {
   list-style: none;
   padding-left: 0;
+}
+
+.answer {
+  padding: 15px 0;
+
+  & + & {
+    border-top: 1px solid lightgray;
+  }
+}
+
+.answers-summary {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 0;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .answer-count {
+    font-size: 150%;
+  }
+}
+
+.answer-pages .pagination {
+  margin: 0;
+}
+
+.answer-body {
+  margin-bottom: 15px;
 }
