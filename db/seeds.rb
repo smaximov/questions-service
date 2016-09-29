@@ -61,3 +61,13 @@ users.each do |user|
     end
   end
 end
+
+zoevas_question = zoeva.questions.create!(title: Faker::Hipster.sentence.truncate(200),
+                                          question: Faker::Hipster.paragraph(5),
+                                          created_at: 2.days.ago)
+# Rather long list of answers to demonstrate pagination
+75.times do
+  zoevas_question.answers.create!(answer: Faker::Hipster.paragraph(5), author: all_users.sample,
+                                  created_at: Faker::Time.between(zoevas_question.created_at,
+                                                                  Time.current))
+end
