@@ -29,12 +29,15 @@ Rails.application.routes.draw do
 
   scope '(:locale)', locale: available_locales do
     root 'home#index'
+    get '/page/:page', to: 'home#index', as: ''
 
     devise_for :users
 
-    resources :questions, only: %i(new create show) do
+    resources :questions, only: %i(new create) do
       post '/', to: 'questions#create_answer', as: :answers
     end
+
+    get '/questions/:id(/page/:page)', to: 'questions#show', as: :question
 
     get '/answers/:id', to: 'questions#answer', as: :answers_permalink
 
