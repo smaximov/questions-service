@@ -25,12 +25,11 @@ class QuestionsController < ApplicationController
 
   def create_answer
     @question = Question.find(params[:question_id])
-    @answer = @question.answers.build(answer_params)
-    @answer.author = current_user
+    @answer = answer_to(@question)
 
     if @answer.save
       flash[:success] = t('.success')
-      redirect_to @question
+      redirect_to answer_path(@answer)
     else
       @answers = @question.answers.page(nil)
       render 'show'
@@ -45,5 +44,17 @@ class QuestionsController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:answer)
+  end
+
+  def answer_to(question)
+    answer = question.answers.build(answer_params)
+    answer.author = current_user
+    answer
+  end
+
+  def answer_path(answer)
+    page = answer.page
+    page = nil if page == 1
+    question_path(answer.question, page: page, anchor: "answer-#{answer.id}")
   end
 end

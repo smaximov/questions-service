@@ -68,10 +68,15 @@ main.container {
 }
 
 .answer {
-  padding: 15px 0;
+  padding: 15px;
+  transition: background-color 1.5s;
 
   & + & {
     border-top: 1px solid lightgray;
+  }
+
+  &.focused {
+    background-color: #f9fb92;
   }
 }
 

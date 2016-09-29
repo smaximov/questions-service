@@ -46,4 +46,54 @@ RSpec.describe Answer, type: :model do
       expect(answer.answer).to eq('Answer Body')
     end
   end
+
+  describe '#page' do
+    let(:extra_answers) { 0 }
+
+    before do
+      answer.save
+
+      Timecop.freeze(1.day.from_now) do
+        FactoryGirl.create_list(:answer, extra_answers)
+      end
+    end
+
+    context 'with less than 15 answers' do
+      it 'equals 1' do
+        expect(answer.page).to eq(1)
+      end
+    end
+
+    context 'with 15 answers' do
+      let(:extra_answers) { 14 }
+
+      it 'equals 1' do
+        expect(answer.page).to eq(1)
+      end
+    end
+
+    context 'with 16 answers' do
+      let(:extra_answers) { 15 }
+
+      it 'equals 2' do
+        expect(answer.page).to eq(2)
+      end
+    end
+
+    context 'with 30 answers' do
+      let(:extra_answers) { 29 }
+
+      it 'equals 2' do
+        expect(answer.page).to eq(2)
+      end
+    end
+
+    context 'with 31 answers' do
+      let(:extra_answers) { 30 }
+
+      it 'equals 3' do
+        expect(answer.page).to eq(3)
+      end
+    end
+  end
 end
