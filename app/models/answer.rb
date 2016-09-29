@@ -8,6 +8,8 @@ class Answer < ApplicationRecord
 
   belongs_to :author, class_name: 'User'
   belongs_to :question
+  # Do I really need this if I already has belongs_to :question?
+  # has_one :question, foreign_key: :best_answer_id
 
   default_scope { order(created_at: :desc) }
 

@@ -5,6 +5,7 @@ RSpec.describe Question, type: :model do
   let(:question) { FactoryGirl.build(:question) }
 
   it { is_expected.to belong_to(:author).class_name('User') }
+  it { is_expected.to belong_to(:best_answer).class_name('Answer') }
   it { is_expected.to have_many(:answers) }
 
   it 'has valid factory' do
