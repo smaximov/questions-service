@@ -79,6 +79,8 @@ en:
     new:
       new: New question
       create: Create
+    create:
+      success: Successfully created new question!
   home:
     index:
       have_a_question: Have a question

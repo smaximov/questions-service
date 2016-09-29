@@ -62,6 +62,8 @@ ru:
     new:
       new: Новый вопрос
       create: Создать
+    create:
+      success: Новый вопрос создан успешно!
   home:
     index:
       have_a_question: Есть вопрос
