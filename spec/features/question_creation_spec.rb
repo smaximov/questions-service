@@ -25,6 +25,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Title', with: 'Title with sufficient length'
         click_button 'Create'
       end
+      expect(page).not_to have_css('.flash-messages', text: I18n.t('questions.create.success'))
       expect(page).to have_current_path(questions_path(locale: I18n.locale))
       expect(page).to have_css('.error_messages')
     end
@@ -36,6 +37,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Question', with: 'Too short'
         click_button 'Create'
       end
+      expect(page).not_to have_css('.flash-messages', text: I18n.t('questions.create.success'))
       expect(page).to have_current_path(questions_path(locale: I18n.locale))
       expect(page).to have_css('.error_messages')
     end
@@ -50,6 +52,7 @@ RSpec.feature 'Question creation' do
         fill_in 'Question', with: question
         click_button 'Create'
       end
+      expect(page).to have_css('.flash-messages', text: I18n.t('questions.create.success'))
       expect(page).not_to have_current_path(questions_path)
       expect(page).to have_text(title)
       expect(page).to have_text(question)

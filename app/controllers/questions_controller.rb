@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.build(question_params)
     if @question.save
-      flash.now[:success] = t('.success')
+      flash[:success] = t('.success')
       redirect_to @question
     else
       render 'new'
