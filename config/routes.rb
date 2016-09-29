@@ -29,19 +29,17 @@ Rails.application.routes.draw do
 
   scope '(:locale)', locale: available_locales do
     root 'home#index'
-    get '/page/:page', to: 'home#index', as: ''
+    get '/page/:page', to: 'home#index'
 
     devise_for :users
 
-    resources :questions, only: %i(new create) do
-      post '/', to: 'questions#create_answer', as: :answers
-    end
-
+    get '/questions/new', to: 'questions#new', as: :new_question
     get '/questions/:id(/page/:page)', to: 'questions#show', as: :question
+    post '/questions/new', to: 'questions#create', as: :questions
+    post '/questions/:question_id', to: 'questions#create_answer', as: :question_answers
 
     get '/answers/:id', to: 'questions#answer', as: :answers_permalink
 
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
-    get '/questions', to: redirect(UrlHelpersRedirector.new_question_path)
   end
 end
