@@ -20,6 +20,7 @@ gem 'http_accept_language', '~> 2.0.5'
 gem 'rails-i18n', '~> 5.0.1'
 gem 'devise-i18n', '~> 1.1.0'
 gem 'faker', '~> 1.6.6'
+gem 'rails-timeago', '~> 2.15.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri

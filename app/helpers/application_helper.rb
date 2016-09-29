@@ -35,8 +35,6 @@ module ApplicationHelper
   end
 
   def relative_time_tag(time)
-    content_tag('time', class: 'time', datetime: time.iso8601, title: l(time, format: :long)) do
-      "#{time_ago_in_words(time)} #{t('shared.ago')}"
-    end
+    timeago_tag(time, format: :long, class: 'time')
   end
 end
