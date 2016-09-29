@@ -59,8 +59,11 @@ en:
       question:
         title: Title
         question: Question
+      answer:
+        answer: Answer
     models:
       question: question
+      answer: answer
   devise:
     sessions:
       new:
@@ -81,6 +84,11 @@ en:
       create: Create
     create:
       success: Successfully created new question!
+    show:
+      answer: Answer
+      your_answer: Your answer
+    create_answer:
+      success: Successfully created new answer!
   home:
     index:
       have_a_question: Have a question

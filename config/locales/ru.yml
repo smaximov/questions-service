@@ -40,8 +40,11 @@ ru:
       question:
         title: Название
         question: Вопрос
+      answer:
+        answer: Ответ
     models:
       question: Вопрос
+      answer: Ответ
   devise:
     sessions:
       new:
@@ -64,6 +67,11 @@ ru:
       create: Создать
     create:
       success: Новый вопрос создан успешно!
+    show:
+      answer: Ответить
+      your_answer: Ваш ответ
+    create_answer:
+      success: Новый ответ добавлен успешно!
   home:
     index:
       have_a_question: Есть вопрос

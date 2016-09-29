@@ -32,7 +32,9 @@ Rails.application.routes.draw do
 
     devise_for :users
 
-    resources :questions, only: %i(new create show)
+    resources :questions, only: %i(new create show) do
+      post '/', to: 'questions#create_answer', as: :answers
+    end
 
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
     get '/questions', to: redirect(UrlHelpersRedirector.new_question_path)
