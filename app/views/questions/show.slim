@@ -28,6 +28,7 @@
     .answers
       .answers-summary
         .answer-count #{@answers.total_count} #{t('shared.answers', count: @answers.total_count)}
-        .answer-pages
-          = paginate @answers
-      = render @answers
+        #answers-pagination.answer-pages
+          = paginate @answers, params: blacklisted_params, remote: true
+      #answers
+        = render @answers

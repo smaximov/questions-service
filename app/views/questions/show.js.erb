@@ -1,0 +1,6 @@
+$('#answers').html('<%= j(render @answers) %>');
+$('#answers-pagination').html('<%= j(paginate @answers, remote: true) %>');
+
+var path = '<%= request.fullpath %>';
+
+window.history.pushState({}, window.title, path);

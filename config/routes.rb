@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get '/questions/new', to: 'questions#new', as: :new_question
     get '/questions/:id(/page/:page)', to: 'questions#show', as: :question
     post '/questions/new', to: 'questions#create', as: :questions
-    post '/questions/:question_id', to: 'questions#create_answer', as: :question_answers
+    post '/questions/:id', to: 'questions#create_answer', as: :question_answers
 
     get '/answers/:id', to: 'questions#answer', as: :answer_permalink
     post '/answers/:id/best', to: 'questions#mark_as_best', as: :answer_mark_as_best

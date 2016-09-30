@@ -18,5 +18,7 @@
               sign_in_link: link_to(t('.sign_in'), new_user_session_path))
           | !
     - else
-      = render @questions, brief: true
-      = paginate @questions
+      #questions.questions
+        = render @questions, brief: true
+      #questions-pagination.question-pagination
+        = paginate @questions, remote: true

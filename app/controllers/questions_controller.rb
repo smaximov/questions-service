@@ -21,11 +21,12 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answers = @question.answers.page(params[:page])
-    @answer = @question.answers.build if user_signed_in?
+    @answer = @question.answers.build if
+      request.format.html? && user_signed_in?
   end
 
   def create_answer
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:id])
     @answer = answer_to(@question)
 
     if @answer.save

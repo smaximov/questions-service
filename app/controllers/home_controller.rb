@@ -15,6 +15,6 @@ class HomeController < ApplicationController
   private
 
   def authenticate_user_if_tab_is_mine!
-    return authenticate_user! if tabs.mine?
+    authenticate_user! if tabs.mine?
   end
 end
