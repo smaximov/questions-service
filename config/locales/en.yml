@@ -1,67 +1,27 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  views:
-    pagination:
-      first: '&laquo;'
-      last: '&raquo;'
-      previous: '&lsaquo;'
-      next: '&rsaquo;'
-      truncate: "&hellip;"
-  shared:
-    locale:
-      language: Language
-      en: English
-      ru: Русский
-    links:
-      sign_out: Sign out
-      profile: Profile
-      new_question: New question
-    app:
-      brand: Questions
-      name: Questions Service
-    answers:
-      one: answer
-      other: answers
-  helpers:
-    placeholder:
-      user:
-        login: Profile name or email
-        username: For example, john.doe
-        fullname: For example, John Doe
   activerecord:
     attributes:
-      user:
-        login: Login
-        username: Profile name
-        fullname: Full name
-      question:
-        title: Title
-        question: Question
       answer:
         answer: Answer
+      question:
+        question: Question
+        title: Title
+      user:
+        fullname: Full name
+        login: Login
+        username: Profile name
     models:
-      question: question
       answer: answer
+      question: question
+  answers:
+    answer:
+      answered: answered
+      permalink: permalink
+    best_answer_button:
+      best: Best answer
+      cancel: Remove mark
+      mark: Mark as best answer
   devise:
     sessions:
       new:
@@ -71,42 +31,60 @@ en:
       password_length:
         one: "%{count} character minimum."
         other: "%{count} characters minimum."
-      username: >-
-        Allowed: latin letters, digits, underscore, hyphen, and dot. Examples
-        of valid profile names: johndoe, john-doe.007, john_doe42.
-  questions:
-    question:
-      asked: asked
-      has_best: "One of the answers was marked by the question's author as best"
-    new:
-      new: New question
-      create: Create
-    create:
-      success: Successfully created new question!
-    show:
-      answer: Answer
-      your_answer: Your answer
-      best_answer: Best answer
-    create_answer:
-      success: Successfully created new answer!
+      username: 'Allowed: latin letters, digits, underscore, hyphen, and dot. Examples of valid profile names: johndoe, john-doe.007, john_doe42.'
+  helpers:
+    placeholder:
+      user:
+        fullname: For example, John Doe
+        login: Profile name or email
+        username: For example, john.doe
   home:
     index:
-      have_a_question: Have a question
-      sign_up: Sign up
-      no_questions_yet: "There're no questions here yet"
       ask_a_question: Ask one
+      have_a_question: Have a question
+      no_questions_yet: There're no questions here yet
       sign_in: Sign in
       sign_in_to_ask_a_question:
         html: "%{sign_in_link} to ask one"
+      sign_up: Sign up
     tabs:
       latest: Latest questions
       mine: My questions
       unanswered: Unanswered questions
-  answers:
-    answer:
-      answered: answered
-      permalink: permalink
-    best_answer_button:
-      best: Best answer
-      cancel: Remove mark
-      mark: Mark as best answer
+  questions:
+    create:
+      success: Successfully created new question!
+    create_answer:
+      success: Successfully created new answer!
+    new:
+      create: Create
+      new: New question
+    question:
+      asked: asked
+      has_best: One of the answers was marked by the question's author as best
+    show:
+      answer: Answer
+      best_answer: Best answer
+      your_answer: Your answer
+  shared:
+    answers:
+      one: answer
+      other: answers
+    app:
+      brand: Questions
+      name: Questions Service
+    links:
+      new_question: New question
+      profile: Profile
+      sign_out: Sign out
+    locale:
+      en: English
+      language: Language
+      ru: Русский
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      next: "&rsaquo;"
+      previous: "&lsaquo;"
+      truncate: "&hellip;"

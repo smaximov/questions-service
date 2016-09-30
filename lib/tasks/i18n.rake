@@ -15,4 +15,9 @@ namespace :i18n do
   task :missing do
     sh 'bundle exec i18n-tasks missing'
   end
+
+  desc 'Normalize I18n keys'
+  task :normalize do
+    sh 'bundle exec i18n-tasks normalize'
+  end
 end

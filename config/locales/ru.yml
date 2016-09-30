@@ -1,90 +1,19 @@
+---
 ru:
-  views:
-    pagination:
-      first: '&laquo;'
-      last: '&raquo;'
-      previous: '&lsaquo;'
-      next: '&rsaquo;'
-      truncate: "&hellip;"
-  shared:
-    locale:
-      language: Язык
-      en: English
-      ru: Русский
-    links:
-      sign_out: Выйти
-      profile: Профиль
-      new_question: Задать вопрос
-    app:
-      brand: Вопросы
-      name: Сервис Вопросы
-    answers:
-      one: ответ
-      few: ответа
-      many: ответов
-      other: ответа
-  helpers:
-    placeholder:
-      user:
-        login: Название профиля или email
-        username: Например, ivanov.ivan
-        fullname: Например, Иванов Иван
   activerecord:
     attributes:
-      user:
-        login: Логин
-        username: Название профиля
-        fullname: Полное имя
-      question:
-        title: Название
-        question: Вопрос
       answer:
         answer: Ответ
+      question:
+        question: Вопрос
+        title: Название
+      user:
+        fullname: Полное имя
+        login: Логин
+        username: Название профиля
     models:
-      question: Вопрос
       answer: Ответ
-  devise:
-    sessions:
-      new:
-        login: Вход
-  help:
-    user:
-      password_length:
-        one: "Минимум %{count} символ."
-        few: "Минимум %{count} символа."
-        many: "Минимум %{count} символов."
-        other: "Минимум %{count} символа."
-      username: >-
-        Разрешены: латинские символы, цифры, подчёркивание, дефис и точка. Примеры
-        корректных названий профиля: ivanov, ivan-ivanov.007, ivanov_ivan42
-  questions:
-    question:
-      asked: спросил(а)
-      has_best: Один из ответов был отмечен автором вопроса как лучший
-    new:
-      new: Новый вопрос
-      create: Создать
-    create:
-      success: Новый вопрос создан успешно!
-    show:
-      answer: Ответить
-      your_answer: Ваш ответ
-      best_answer: Лучший ответ
-    create_answer:
-      success: Новый ответ добавлен успешно!
-  home:
-    index:
-      have_a_question: Есть вопрос
-      sign_up: Зарегистрируйтесь
-      no_questions_yet: Тут ещё нет вопросов
-      ask_a_question: Задать вопрос
-      sign_in: Войдите
-      sign_in_to_ask_a_question:
-        html: "%{sign_in_link}, чтобы задать вопрос"
-    tabs:
-      latest: Последние вопросы
-      mine: Мои вопросы
-      unanswered: Неотвеченные вопросы
+      question: Вопрос
   answers:
     answer:
       answered: ответил(а)
@@ -93,3 +22,73 @@ ru:
       best: Лучший ответ
       cancel: Снять отметку
       mark: Отметить как лучший ответ
+  devise:
+    sessions:
+      new:
+        login: Вход
+  help:
+    user:
+      password_length:
+        few: Минимум %{count} символа.
+        many: Минимум %{count} символов.
+        one: Минимум %{count} символ.
+        other: Минимум %{count} символа.
+      username: 'Разрешены: латинские символы, цифры, подчёркивание, дефис и точка. Примеры корректных названий профиля: ivanov, ivan-ivanov.007, ivanov_ivan42'
+  helpers:
+    placeholder:
+      user:
+        fullname: Например, Иванов Иван
+        login: Название профиля или email
+        username: Например, ivanov.ivan
+  home:
+    index:
+      ask_a_question: Задать вопрос
+      have_a_question: Есть вопрос
+      no_questions_yet: Тут ещё нет вопросов
+      sign_in: Войдите
+      sign_in_to_ask_a_question:
+        html: "%{sign_in_link}, чтобы задать вопрос"
+      sign_up: Зарегистрируйтесь
+    tabs:
+      latest: Последние вопросы
+      mine: Мои вопросы
+      unanswered: Неотвеченные вопросы
+  questions:
+    create:
+      success: Новый вопрос создан успешно!
+    create_answer:
+      success: Новый ответ добавлен успешно!
+    new:
+      create: Создать
+      new: Новый вопрос
+    question:
+      asked: спросил(а)
+      has_best: Один из ответов был отмечен автором вопроса как лучший
+    show:
+      answer: Ответить
+      best_answer: Лучший ответ
+      your_answer: Ваш ответ
+  shared:
+    answers:
+      few: ответа
+      many: ответов
+      one: ответ
+      other: ответа
+    app:
+      brand: Вопросы
+      name: Сервис Вопросы
+    links:
+      new_question: Задать вопрос
+      profile: Профиль
+      sign_out: Выйти
+    locale:
+      en: English
+      language: Язык
+      ru: Русский
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      next: "&rsaquo;"
+      previous: "&lsaquo;"
+      truncate: "&hellip;"
