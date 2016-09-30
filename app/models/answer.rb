@@ -20,7 +20,8 @@ class Answer < ApplicationRecord
 
   # Determine the page the answer appears on.
   def page
-    position = self.class.where('created_at >= ?', created_at).count
+    position = self.class.where('created_at >= ? AND question_id = ?',
+                                created_at, question_id).count
     (position.to_f / ANSWERS_PER_PAGE).ceil
   end
 

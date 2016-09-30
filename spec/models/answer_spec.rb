@@ -49,12 +49,14 @@ RSpec.describe Answer, type: :model do
 
   describe '#page' do
     let(:extra_answers) { 0 }
+    let(:question) { FactoryGirl.create(:question) }
 
     before do
+      answer.question = question
       answer.save
 
       Timecop.freeze(1.day.from_now) do
-        FactoryGirl.create_list(:answer, extra_answers)
+        FactoryGirl.create_list(:answer, extra_answers, question: question)
       end
     end
 
@@ -80,19 +82,18 @@ RSpec.describe Answer, type: :model do
       end
     end
 
-    context 'with 30 answers' do
-      let(:extra_answers) { 29 }
+    context 'with additional answers to the other question' do
+      let(:other_question) { FactoryGirl.create(:question) }
+      let(:extra_answers) { 14 }
 
-      it 'equals 2' do
-        expect(answer.page).to eq(2)
+      before do
+        Timecop.freeze(2.days.from_now) do
+          FactoryGirl.create_list(:answer, extra_answers, question: other_question)
+        end
       end
-    end
 
-    context 'with 31 answers' do
-      let(:extra_answers) { 30 }
-
-      it 'equals 3' do
-        expect(answer.page).to eq(3)
+      it 'equals 1' do
+        expect(answer.page).to eq(1)
       end
     end
   end
