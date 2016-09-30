@@ -1,6 +1,8 @@
 ul.nav.nav-tabs
   li class=('active' if tabs.latest?) role="presentation"
     = link_to t('.latest'), root_path
+  li class=('active' if tabs.unanswered?) role="presentation"
+    = link_to t('.unanswered'), root_path(tab: tabs.unanswered)
   - if user_signed_in?
     li class=('active' if tabs.mine?) role="presentation"
-      = link_to t('.mine'), root_path(tab: 'mine')
+      = link_to t('.mine'), root_path(tab: tabs.mine)

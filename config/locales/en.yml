@@ -101,6 +101,7 @@ en:
     tabs:
       latest: Latest questions
       mine: My questions
+      unanswered: Unanswered questions
   answers:
     answer:
       answered: answered

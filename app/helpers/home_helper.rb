@@ -5,21 +5,18 @@ module HomeHelper
   end
 
   class SelectedTab
+    TABS = %i(mine latest unanswered).freeze
+
+    TABS.each do |tab|
+      define_method(tab) { tab }
+      define_method("#{tab}?") { selected == public_send(tab) }
+    end
+
     attr_reader :selected
 
     def initialize(tab)
-      @selected = case tab
-                  when 'mine' then :mine
-                  else :latest
-                  end
-    end
-
-    def latest?
-      @selected == :latest
-    end
-
-    def mine?
-      @selected == :mine
+      tab = tab.try(:to_sym)
+      @selected = TABS.include?(tab) ? tab : latest
     end
   end
 end

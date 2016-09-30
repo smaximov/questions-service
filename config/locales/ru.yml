@@ -84,6 +84,7 @@ ru:
     tabs:
       latest: Последние вопросы
       mine: Мои вопросы
+      unanswered: Неотвеченные вопросы
   answers:
     answer:
       answered: ответил(а)
