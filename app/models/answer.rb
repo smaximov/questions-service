@@ -7,7 +7,7 @@ class Answer < ApplicationRecord
   paginates_per ANSWERS_PER_PAGE
 
   belongs_to :author, class_name: 'User'
-  belongs_to :question
+  belongs_to :question, counter_cache: true
   # Do I really need this if I already has belongs_to :question?
   # has_one :question, foreign_key: :best_answer_id
 
