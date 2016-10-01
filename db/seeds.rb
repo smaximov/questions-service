@@ -33,7 +33,7 @@ zoevas_answer = <<ANSWER
 бывает открытой. За ней лежат утерянные архивы Ленинки
 ANSWER
 ivanovs_question.answers.create!(answer: zoevas_answer, author: zoeva,
-                                 created_at: Faker::Time.between(ivanovs_question.created_at, Time.current))
+                                 created_at: rand(ivanovs_question.created_at..Time.current))
 
 users = Array.new(EXTRA_USERS) do |n|
   user = User.create!(username: "user-#{n}", email: "user-#{n}@example.com",
@@ -43,7 +43,7 @@ users = Array.new(EXTRA_USERS) do |n|
   rand(0..QUESTIONS_PER_USER).times do
     user.questions.create!(title: Faker::Hipster.sentence.truncate(200),
                            question: Faker::Hipster.paragraph(5),
-                           created_at: Faker::Time.between(user.created_at, Time.current))
+                           created_at: rand(user.created_at..Time.current))
   end
 
   user
@@ -57,7 +57,7 @@ users.each do |user|
 
     rand(1..ANSWERS_PER_QUESTION).times do
       question.answers.create!(answer: Faker::Hipster.paragraph(5), author: all_users.sample,
-                               created_at: Faker::Time.between(question.created_at, Time.current))
+                               created_at: rand(question.created_at..Time.current))
     end
   end
 end
@@ -68,6 +68,5 @@ zoevas_question = zoeva.questions.create!(title: Faker::Hipster.sentence.truncat
 # Rather long list of answers to demonstrate pagination
 75.times do
   zoevas_question.answers.create!(answer: Faker::Hipster.paragraph(5), author: all_users.sample,
-                                  created_at: Faker::Time.between(zoevas_question.created_at,
-                                                                  Time.current))
+                                  created_at: rand(zoevas_question.created_at..Time.current))
 end
