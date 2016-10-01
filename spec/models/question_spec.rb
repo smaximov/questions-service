@@ -16,7 +16,7 @@ RSpec.describe Question, type: :model do
     it 'is descending on :created_at' do
       question.save
       # Create another question before the question was created
-      other_question = Timecop.freeze(1.day.ago) { FactoryGirl.create(:question) }
+      other_question = travel_to(1.day.ago) { FactoryGirl.create(:question) }
       expect(Question.pluck(:id)).to eq([question.id, other_question.id])
     end
   end

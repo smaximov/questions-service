@@ -16,7 +16,7 @@ RSpec.describe Answer, type: :model do
     it 'is descending on :created_at' do
       answer.save
       # Create another answer before the answer was created
-      other_answer = Timecop.freeze(1.day.ago) { FactoryGirl.create(:answer) }
+      other_answer = travel_to(1.day.ago) { FactoryGirl.create(:answer) }
       expect(Answer.pluck(:id)).to eq([answer.id, other_answer.id])
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe Answer, type: :model do
       answer.question = question
       answer.save
 
-      Timecop.freeze(1.day.from_now) do
+      travel_to(1.day.from_now) do
         FactoryGirl.create_list(:answer, extra_answers, question: question)
       end
     end
@@ -88,7 +88,7 @@ RSpec.describe Answer, type: :model do
       let(:extra_answers) { 14 }
 
       before do
-        Timecop.freeze(2.days.from_now) do
+        travel_to(2.days.from_now) do
           FactoryGirl.create_list(:answer, extra_answers, question: other_question)
         end
       end
