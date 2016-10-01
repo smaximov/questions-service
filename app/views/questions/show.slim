@@ -9,7 +9,7 @@
         = error_messages_for(@answer)
         .form-group
           = f.label :answer, t('.your_answer'), class: 'control-label'
-          = f.text_area :answer, class: 'form-control', rows: 10, autofocus: true
+          = f.text_area :answer, class: 'form-control', rows: 10
         .form-group
           = f.submit t('.answer'), class: 'btn btn-primary'
 
