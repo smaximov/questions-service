@@ -103,8 +103,8 @@ RSpec::Matchers.define :have_errors_on do |attr|
   define_method :validate_chain_message do |object, negated: false|
     return unless chain?(:message)
 
-    tested_message = object.errors.generate_message(attr, @message, @message_options)
-    contains_message = object.errors[attr].include?(tested_message)
+    @tested_message = object.errors.generate_message(attr, @message, @message_options)
+    contains_message = object.errors[attr].include?(@tested_message)
 
     valid[:message] = if negated
                         !contains_message
@@ -137,11 +137,9 @@ RSpec::Matchers.define :have_errors_on do |attr|
   define_method :append_chain_message_message do |_object, message, negated: false|
     return unless chain?(:message)
 
-    message << if negated
-                 "\nExpected :#{attr} not to have error #{@message.inspect}}"
-               else
-                 "\nExpected :#{attr} to have error #{@message.inspect}}"
-               end
+    message << "\nExpected :#{attr} #{negated ? 'not ' : ''}to have error #{@message.inspect}"
+    message << " with options #{@message_options}" unless @message_options.nil?
+    message << "\n\t#{attr} #{@tested_message}"
   end
 
   private
