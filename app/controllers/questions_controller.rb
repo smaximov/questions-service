@@ -80,6 +80,6 @@ class QuestionsController < ApplicationController
   def answer_path(answer)
     page = answer.page
     page = nil if page == 1
-    question_path(answer.question, page: page, anchor: "answer-#{answer.id}")
+    question_path(answer.question, page: page, focused: answer.id, anchor: "answer-#{answer.id}")
   end
 end
