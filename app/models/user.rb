@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
-  include Strippable
-
   has_many :questions, foreign_key: :author_id
   has_many :answers, foreign_key: :author_id
 
@@ -25,7 +23,7 @@ class User < ApplicationRecord
   # Virtual attribute for authentication by either username or email
   attr_accessor :login
 
-  strip :fullname
+  attribute :fullname, :stripped_text
 
   def self.find_for_database_authentication(conditions)
     login = conditions.delete(:login)

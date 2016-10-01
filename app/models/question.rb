@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 class Question < ApplicationRecord
-  include Strippable
-
   paginates_per 10
 
   default_scope { order(created_at: :desc) }
@@ -16,6 +14,6 @@ class Question < ApplicationRecord
   validates :question, presence: true
   validates :question, length: { within: 20..5000 }, allow_blank: true
 
-  strip :title
-  strip :question
+  attribute :title, :stripped_text
+  attribute :question, :stripped_text
 end

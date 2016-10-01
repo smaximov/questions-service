@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 class Answer < ApplicationRecord
-  include Strippable
-
   ANSWERS_PER_PAGE = 15
 
   paginates_per ANSWERS_PER_PAGE
@@ -16,7 +14,7 @@ class Answer < ApplicationRecord
   validates :answer, presence: true
   validates :answer, length: 20..5000, allow_blank: true
 
-  strip :answer
+  attribute :answer, :stripped_text
 
   # Determine the page the answer appears on.
   def page
