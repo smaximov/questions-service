@@ -122,4 +122,13 @@ RSpec.describe Answer, type: :model do
       end
     end
   end
+
+  describe '#corrections_count' do
+    it 'caches #corrections.count' do
+      answer.save!
+      expect {
+        FactoryGirl.create(:correction, answer: answer)
+      }.to change { answer.corrections_count }.by(1)
+    end
+  end
 end

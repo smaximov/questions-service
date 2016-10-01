@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Correction < ApplicationRecord
-  belongs_to :answer
+  belongs_to :answer, counter_cache: true
   belongs_to :author, class_name: 'User'
 
   validates :text, presence: true
