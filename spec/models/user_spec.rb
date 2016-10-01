@@ -49,6 +49,11 @@ RSpec.describe User, type: :model do
       user.username = 'a' * 21
       expect(user).to have_errors_on(:username).only.exactly(1).message(:too_long, count: 20)
     end
+
+    it 'is stripped of surrounding whitespace' do
+      user.username = " john.doe \n\t"
+      expect(user.username).to eq('john.doe')
+    end
   end
 
   describe '#fullname' do
@@ -75,6 +80,13 @@ RSpec.describe User, type: :model do
     it 'is stripped of surrounded whitespace' do
       user.fullname = " John Doe \n\t"
       expect(user.fullname).to eq('John Doe')
+    end
+  end
+
+  describe '#login' do
+    it 'is stripped of surrounding whitespace' do
+      user.login = " john.doe \n\t"
+      expect(user.login).to eq('john.doe')
     end
   end
 end

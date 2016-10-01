@@ -21,8 +21,9 @@ class User < ApplicationRecord
          :confirmable
 
   # Virtual attribute for authentication by either username or email
-  attr_accessor :login
+  attribute :login, :stripped_text
 
+  attribute :username, :stripped_text
   attribute :fullname, :stripped_text
 
   def self.find_for_database_authentication(conditions)
