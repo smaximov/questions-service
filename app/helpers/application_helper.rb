@@ -42,4 +42,14 @@ module ApplicationHelper
   def current_user?(user)
     user_signed_in? && current_user == user
   end
+
+  # If the question has a best answer, return permalink to that answer.
+  # Otherwise, return the question path.
+  def question_answers_highlight_path(question)
+    if question.best_answer_id.present?
+      answer_permalink_path(question.best_answer_id)
+    else
+      question_path(question, anchor: 'answers')
+    end
+  end
 end

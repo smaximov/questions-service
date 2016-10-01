@@ -2,7 +2,7 @@
 
   - if local_assigns[:brief]
     .question-stats title=(t('.has_best') unless question.best_answer.nil?)
-      .question-stats-answers
+      a.question-stats-answers href=question_answers_highlight_path(question) data-turbolinks="false"
         .answer-count #{question.answers_count}
         .small #{t('shared.answers', count: question.answers_count)}
 

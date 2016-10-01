@@ -17,6 +17,8 @@
       - if @question.best_answer.present?
         h3
           => t('.best_answer')
+          => link_to t('.goto_answer'), answer_permalink_path(@question.best_answer_id),
+                                        data: { turbolinks: false }, class: 'btn btn-primary btn-xs'
           - if current_user?(@question.author)
             = button_to(answer_cancel_best_path(@question.best_answer.id),
                         class: 'btn btn-danger btn-xs', title: t('answers.best_answer_button.cancel'),

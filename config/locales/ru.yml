@@ -67,6 +67,7 @@ ru:
     show:
       answer: Ответить
       best_answer: Лучший ответ
+      goto_answer: Перейти к ответу
       your_answer: Ваш ответ
   shared:
     answers:
