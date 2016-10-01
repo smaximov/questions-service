@@ -85,4 +85,13 @@ RSpec.describe Question, type: :model do
       expect(question).to have_errors_on(:question).only.exactly(1).message(:too_long, count: 5000)
     end
   end
+
+  describe '#answers_count' do
+    it 'caches #answers.count' do
+      question.save!
+      expect {
+        FactoryGirl.create(:answer, question: question)
+      }.to change { question.answers_count }.by(1)
+    end
+  end
 end

@@ -34,6 +34,10 @@ Style/ExtraSpacing:
 Style/Documentation:
   Enabled: false
 
+Style/BlockDelimiters:
+  Exclude:
+    - spec/**/*
+
 # Metrics
 
 Metrics/LineLength:

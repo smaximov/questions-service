@@ -3,8 +3,8 @@
   - if local_assigns[:brief]
     .question-stats title=(t('.has_best') unless question.best_answer.nil?)
       .question-stats-answers
-        .answer-count #{question.answers.count}
-        .small #{t('shared.answers', count: question.answers.count)}
+        .answer-count #{question.answers_count}
+        .small #{t('shared.answers', count: question.answers_count)}
 
   .question-details
     h3 = link_to question.title, question
