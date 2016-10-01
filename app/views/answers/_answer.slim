@@ -5,7 +5,7 @@
         = render 'answers/best_answer_button', answer: answer
       .answer-permalink
         | [
-        = link_to t('.permalink'), answer_permalink_path(answer.id)
+        = link_to t('.permalink'), answer_permalink_path(answer.id), data: { turbolinks: "false" }
         | ]
   .answer-body
     = answer.answer
