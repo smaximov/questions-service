@@ -1,4 +1,6 @@
-$('#answers').html('<%= j(render @answers) %>');
+$('#answers')
+    .html('<%= j(render @answers) %>')
+    .find('time[data-time-ago]').timeago();
 $('#answers-pagination').html('<%= j(paginate @answers, remote: true) %>');
 
 var path = '<%= request.fullpath %>';
