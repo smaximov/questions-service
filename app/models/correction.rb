@@ -7,5 +7,13 @@ class Correction < ApplicationRecord
   validates :text, presence: true
   validates :text, length: 20..500, allow_blank: true
 
+  before_create :set_accepted_time
+
   attribute :text, :stripped_text
+
+  private
+
+  def set_accepted_time
+    self.accepted_at = Time.current if author_id == answer.author_id
+  end
 end

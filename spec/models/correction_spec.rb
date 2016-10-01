@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
+RSpec::Matchers.define_negated_matcher :not_change, :change
+
 RSpec.describe Correction, type: :model do
   let(:correction) { FactoryGirl.build(:correction) }
 
@@ -35,6 +37,38 @@ RSpec.describe Correction, type: :model do
     it 'is stripped of surrounding whitespace' do
       correction.text = "  foo bar \n\t"
       expect(correction.text).to eq('foo bar')
+    end
+  end
+
+  describe '#accepted_at' do
+    context "when correction's author doesn't match the answer's author" do
+      it 'is not set after creation' do
+        correction.save!
+        expect(correction.reload.accepted_at).to be_nil
+      end
+    end
+
+    context "when correction's author is the answer's author" do
+      it 'is set to the current time after creation' do
+        correction.author = correction.answer.author
+        travel_to(Time.current) do
+          correction.save!
+          expect(correction.reload.accepted_at).to eq(Time.current)
+        end
+      end
+
+      it "doesn't change on subsequent saves after creation" do
+        correction.author = correction.answer.author
+        correction.save!
+
+        expect(correction.accepted_at).not_to be_nil
+        expect {
+          travel_to(1.minute.from_now) do
+            correction.text += ' updated'
+            correction.save!
+          end
+        }.to change { correction.updated_at } & not_change { correction.accepted_at }
+      end
     end
   end
 end
