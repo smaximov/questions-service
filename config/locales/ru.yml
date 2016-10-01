@@ -4,6 +4,8 @@ ru:
     attributes:
       answer:
         answer: Ответ
+      correction:
+        text: Текст
       question:
         question: Вопрос
         title: Название
@@ -13,6 +15,7 @@ ru:
         username: Название профиля
     models:
       answer: Ответ
+      correction: Исправление
       question: Вопрос
   answers:
     answer:

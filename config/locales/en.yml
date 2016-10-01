@@ -4,6 +4,8 @@ en:
     attributes:
       answer:
         answer: Answer
+      correction:
+        text: Text
       question:
         question: Question
         title: Title
@@ -13,6 +15,7 @@ en:
         username: Profile name
     models:
       answer: answer
+      correction: correction
       question: question
   answers:
     answer:

@@ -10,6 +10,7 @@ RSpec.describe Answer, type: :model do
 
   it { is_expected.to belong_to(:author).class_name('User') }
   it { is_expected.to belong_to(:question) }
+  it { is_expected.to have_many(:corrections) }
 
   describe 'default scope' do
     it 'is descending on :created_at' do

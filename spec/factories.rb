@@ -36,4 +36,12 @@ FactoryGirl.define do
     author
     question
   end
+
+  factory :correction do
+    sequence(:text) do |n|
+      "Correction ##{n} by #{author.fullname} to the answer by #{answer.author.fullname}"
+    end
+    author
+    answer
+  end
 end

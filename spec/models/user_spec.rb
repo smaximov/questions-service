@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to have_many(:questions).foreign_key(:author_id) }
   it { is_expected.to have_many(:answers).foreign_key(:author_id) }
+  it { is_expected.to have_many(:corrections).foreign_key(:author_id) }
 
   describe '#errors' do
     before { subject.save }
