@@ -9,6 +9,8 @@ QUESTIONS_PER_USER = ENV.fetch('QUESTIONS_PER_USER') { 5 }.to_i
 ANSWERS_PER_QUESTION = ENV.fetch('ANSWERS_PER_QUESTION') { 5 }.to_i
 # approx. UNANSWERED_RATIO of questions end up unanswered
 UNANSWERED_RATIO = ENV.fetch('UNANSWERED_RATIO') { 0.3 }.to_f
+# approx. BEST_ANSWER_RATIO of questions with answers have a best answer
+BEST_ANSWERS_RATIO = ENV.fetch('BEST_ANSWERS_RATIO') { 0.6 }.to_f
 
 # Mandatory users
 ivanov = User.create!(username: 'ivanov', fullname: 'Иванов Иван',
@@ -52,13 +54,17 @@ end
 all_users = User.all
 
 users.each do |user|
-  user.questions.each do |question|
+  user.questions.find_each do |question|
     next if rand < UNANSWERED_RATIO
 
-    rand(1..ANSWERS_PER_QUESTION).times do
+    answers = Array.new(rand(1..ANSWERS_PER_QUESTION)) do
       question.answers.create!(answer: Faker::Hipster.paragraph(5), author: all_users.sample,
                                created_at: rand(question.created_at..Time.current))
     end
+
+    next if rand >= BEST_ANSWERS_RATIO
+
+    answers.sample.mark_as_best
   end
 end
 
