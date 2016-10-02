@@ -11,6 +11,8 @@ ANSWERS_PER_QUESTION = ENV.fetch('ANSWERS_PER_QUESTION') { 5 }.to_i
 UNANSWERED_RATIO = ENV.fetch('UNANSWERED_RATIO') { 0.3 }.to_f
 # approx. BEST_ANSWER_RATIO of questions with answers have a best answer
 BEST_ANSWERS_RATIO = ENV.fetch('BEST_ANSWERS_RATIO') { 0.6 }.to_f
+# each answer has up to CORRECTIONS_PER_ANSWER accepted corrections
+CORRECTIONS_PER_ANSWER = ENV.fetch('CORRECTIONS_PER_ANSWER') { 3 }.to_i
 
 # Mandatory users
 ivanov = User.create!(username: 'ivanov', fullname: 'Иванов Иван',
@@ -34,8 +36,8 @@ zoevas_answer = <<ANSWER
 трещиной в стене есть полуржавая дверь, которая временами
 бывает открытой. За ней лежат утерянные архивы Ленинки
 ANSWER
-ivanovs_question.answers.create!(answer: zoevas_answer, author: zoeva,
-                                 created_at: rand(ivanovs_question.created_at..Time.current))
+zoevas_answer = ivanovs_question.answers.create!(answer: zoevas_answer, author: zoeva,
+                                                 created_at: rand(ivanovs_question.created_at..Time.current))
 
 users = Array.new(EXTRA_USERS) do |n|
   user = User.create!(username: "user-#{n}", email: "user-#{n}@example.com",
@@ -75,4 +77,12 @@ zoevas_question = zoeva.questions.create!(title: Faker::Hipster.sentence.truncat
 75.times do
   zoevas_question.answers.create!(answer: Faker::Hipster.paragraph(5), author: all_users.sample,
                                   created_at: rand(zoevas_question.created_at..Time.current))
+end
+
+Answer.where.not(id: zoevas_answer.id).find_each do |answer|
+  rand(0..CORRECTIONS_PER_ANSWER).times do
+    created_at = rand(answer.created_at..Time.current)
+    answer.corrections.create!(text: Faker::Hipster.paragraph, author: all_users.sample,
+                               created_at: created_at, accepted_at: rand(created_at..Time.current))
+  end
 end
