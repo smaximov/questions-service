@@ -41,6 +41,7 @@ group :development do
   gem 'foreman', '~> 0.82.0'
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'spring-commands-rspec', '~> 1.0.4'
 end
 
 group :test do
