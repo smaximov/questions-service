@@ -131,4 +131,24 @@ RSpec.describe Answer, type: :model do
       }.to change { answer.corrections_count }.by(1)
     end
   end
+
+  describe '#accepted_corrections_count' do
+    before { answer.save! }
+
+    context 'when the newly created correction is accepted' do
+      it 'changes by 1' do
+        expect {
+          FactoryGirl.create(:correction, answer: answer, accepted_at: Time.current)
+        }.to change { answer.reload.accepted_corrections_count }.by(1)
+      end
+    end
+
+    context 'when the newly created correction is not yet accepted' do
+      it "doesnt' change" do
+        expect {
+          FactoryGirl.create(:correction, answer: answer)
+        }.not_to change { answer.reload.accepted_corrections_count }
+      end
+    end
+  end
 end

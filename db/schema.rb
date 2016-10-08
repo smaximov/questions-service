@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001110508) do
+ActiveRecord::Schema.define(version: 20161008044743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.text     "answer",                        null: false
-    t.integer  "author_id",                     null: false
-    t.integer  "question_id",                   null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "corrections_count", default: 0, null: false
+    t.text     "answer",                                 null: false
+    t.integer  "author_id",                              null: false
+    t.integer  "question_id",                            null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "corrections_count",          default: 0, null: false
+    t.integer  "accepted_corrections_count", default: 0, null: false
     t.index ["author_id"], name: "index_answers_on_author_id", using: :btree
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
   end

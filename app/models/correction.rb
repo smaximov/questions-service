@@ -11,6 +11,8 @@ class Correction < ApplicationRecord
 
   attribute :text, :stripped_text
 
+  counter_culture :answer, column_name: ->(model) { :accepted_corrections_count if model.accepted? }
+
   # Return true if the correction is accepted.
   def accepted?
     accepted_at.present?

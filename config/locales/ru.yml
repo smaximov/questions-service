@@ -25,6 +25,11 @@ ru:
         many: "%{count} исправлений"
         one: "%{count} исправление"
         other: "%{count} исправления"
+      pending_corrections:
+        few: "%{count} исправления ожидают проверки"
+        many: "%{count} исправлений ожидают проверки"
+        one: "%{count} исправление ожидает проверки"
+        other: "%{count} исправления ожидают проверки"
       permalink: ссылка
     best_answer_button:
       best: Лучший ответ

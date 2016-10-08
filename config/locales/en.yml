@@ -23,6 +23,9 @@ en:
       corrections:
         one: "%{count} correction"
         other: "%{count} corrections"
+      pending_corrections:
+        one: "%{count} correction pending"
+        other: "%{count} corrections pending"
       permalink: permalink
     best_answer_button:
       best: Best answer
