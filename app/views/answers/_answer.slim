@@ -11,6 +11,12 @@
   .answer-body
     = answer.answer
   .answer-info
-    => imprint(answer.author)
-    => t('.answered')
-    => relative_time_tag(answer.created_at)
+    .answer-meta
+      => imprint(answer.author)
+      => t('.answered')
+      => relative_time_tag(answer.created_at)
+    .corrections-meta
+      = t('.corrections', count: answer.corrections_count) unless answer.corrections_count.zero?
+  - unless local_assigns[:best]
+    .corrections
+      = render answer.corrections

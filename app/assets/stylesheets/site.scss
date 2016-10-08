@@ -125,6 +125,14 @@ main.container {
   }
 }
 
+.answer-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .answer-pages .pagination {
   margin: 0;
 }
@@ -149,4 +157,17 @@ main.container {
   .button_to {
     display: inline-block;
   }
+}
+
+.corrections {
+  padding-left: 20px;
+  font-size: 90%;
+}
+
+.correction {
+  margin-top: 15px;
+}
+
+.correction-body {
+  margin-bottom: 5px;
 }

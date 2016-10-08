@@ -1,0 +1,10 @@
+.correction
+  .correction-body
+    = correction.text
+  .correction-info
+    => imprint(correction.author)
+    = relative_time_tag(correction.created_at)
+    - if correction.accepted?
+      ' ,
+      => t('.accepted')
+      = relative_time_tag(correction.accepted_at)

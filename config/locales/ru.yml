@@ -20,11 +20,19 @@ ru:
   answers:
     answer:
       answered: ответил(а)
+      corrections:
+        few: "%{count} исправления"
+        many: "%{count} исправлений"
+        one: "%{count} исправление"
+        other: "%{count} исправления"
       permalink: ссылка
     best_answer_button:
       best: Лучший ответ
       cancel: Снять отметку
       mark: Отметить как лучший ответ
+  corrections:
+    correction:
+      accepted: принято
   devise:
     sessions:
       new:

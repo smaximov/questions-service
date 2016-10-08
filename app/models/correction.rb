@@ -11,6 +11,11 @@ class Correction < ApplicationRecord
 
   attribute :text, :stripped_text
 
+  # Return true if the correction is accepted.
+  def accepted?
+    accepted_at.present?
+  end
+
   private
 
   def set_accepted_time

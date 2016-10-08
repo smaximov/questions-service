@@ -20,11 +20,17 @@ en:
   answers:
     answer:
       answered: answered
+      corrections:
+        one: "%{count} correction"
+        other: "%{count} corrections"
       permalink: permalink
     best_answer_button:
       best: Best answer
       cancel: Remove mark
       mark: Mark as best answer
+  corrections:
+    correction:
+      accepted: accepted
   devise:
     sessions:
       new:

@@ -20,9 +20,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @answers = @question.answers.page(params[:page])
-    @answer = @question.answers.build if
-      request.format.html? && user_signed_in?
+    @answers = question_answers(@question)
+    @answer = @question.answers.build if render_answer_form?
   end
 
   def create_answer
@@ -81,5 +80,13 @@ class QuestionsController < ApplicationController
     page = answer.page
     page = nil if page == 1
     question_path(answer.question, page: page, focused: answer.id, anchor: "answer-#{answer.id}")
+  end
+
+  def question_answers(question)
+    AnswersWithCorrectionsQuery.new(current_user, question.answers.page(params[:page])).results
+  end
+
+  def render_answer_form?
+    request.format.html? && user_signed_in?
   end
 end
