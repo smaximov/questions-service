@@ -1,4 +1,4 @@
-.answer [ id=("answer-#{answer.id}" unless local_assigns[:best])
+.answer [ id=("answer-#{answer.id}" unless local_assigns[:best]) data-id=answer.id
           class=('focused' if !local_assigns[:best] && params[:focused].to_i == answer.id) ]
   - unless local_assigns[:best]
     .answer-header

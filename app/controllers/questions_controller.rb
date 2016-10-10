@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class QuestionsController < ApplicationController
   before_action :authenticate_user!,
-                only: %i(new create create_answer mark_as_best cancel_best suggest_correction create_correction)
+                only: %i(new create create_answer mark_as_best cancel_best
+                         suggest_correction create_correction accepting_correction accept_correction)
+  before_action :find_correction_and_answer, only: %i(accepting_correction accept_correction)
 
   def new
     @question = current_user.questions.build
@@ -79,6 +82,26 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def accepting_correction
+    return head(:unauthorized) unless current_user?(@answer.author)
+    @accept_correction_form = AcceptCorrectionForm.from_correction(@correction)
+    respond_to :js
+  end
+
+  def accept_correction
+    return head(:unauthorized) unless current_user?(@answer.author)
+    @accept_correction_form = AcceptCorrectionForm.new(accept_correction_form_params)
+
+    respond_to do |format|
+      @new_version = @correction.accept(@accept_correction_form)
+      if @new_version
+        format.js
+      else
+        format.js { render :accepting_correction }
+      end
+    end
+  end
+
   private
 
   def question_params
@@ -91,6 +114,10 @@ class QuestionsController < ApplicationController
 
   def correction_params
     params.require(:correction).permit(:text).merge(author_id: current_user.id)
+  end
+
+  def accept_correction_form_params
+    params.require(:accept_correction_form).permit(:text)
   end
 
   def answer_to(question)
@@ -111,5 +138,10 @@ class QuestionsController < ApplicationController
 
   def render_answer_form?
     request.format.html? && user_signed_in?
+  end
+
+  def find_correction_and_answer
+    @correction = Correction.find(params[:id])
+    @answer = @correction.answer
   end
 end

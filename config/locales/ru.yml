@@ -1,5 +1,11 @@
 ---
 ru:
+  activemodel:
+    models:
+      accept_correction_form: Исправление
+    attributes:
+      accept_correction_form:
+        text: Текст
   activerecord:
     attributes:
       answer:
@@ -39,6 +45,7 @@ ru:
         other: "%{count} исправления ожидают проверки"
   corrections:
     correction:
+      accept: Принять
       accepted: принято
     form:
       cancel: Отменить

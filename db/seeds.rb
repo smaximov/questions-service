@@ -82,7 +82,8 @@ end
 Answer.where.not(id: zoevas_answer.id).find_each do |answer|
   rand(0..CORRECTIONS_PER_ANSWER).times do
     created_at = rand(answer.created_at..Time.current)
-    answer.corrections.create!(text: Faker::Hipster.paragraph, author: all_users.sample,
-                               created_at: created_at, accepted_at: rand(created_at..Time.current))
+    correction = answer.corrections.create!(text: Faker::Hipster.paragraph, author: all_users.sample,
+                                            created_at: created_at, accepted_at: rand(created_at..Time.current))
+    correction.accept(AcceptCorrectionForm.from_correction(correction))
   end
 end

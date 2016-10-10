@@ -90,6 +90,8 @@ ignore_unused:
 - 'helpers.placeholder.*'
 - '{devise,kaminari}.*'
 - 'errors.messages.{already_confirmed,confirmation_period_expired,expired,not_found,not_locked}'
+- 'activemodel.attributes.accept_correction_form.*'
+- 'activemodel.models.accept_correction_form'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

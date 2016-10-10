@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010072405) do
+ActiveRecord::Schema.define(version: 20161010132655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,14 @@ ActiveRecord::Schema.define(version: 20161010072405) do
 
   create_table "corrections", force: :cascade do |t|
     t.text     "text"
-    t.integer  "author_id",   null: false
-    t.integer  "answer_id",   null: false
+    t.integer  "author_id",         null: false
+    t.integer  "answer_id",         null: false
     t.datetime "accepted_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "answer_version_id"
     t.index ["answer_id"], name: "index_corrections_on_answer_id", using: :btree
+    t.index ["answer_version_id"], name: "index_corrections_on_answer_version_id", using: :btree
     t.index ["author_id"], name: "index_corrections_on_author_id", using: :btree
   end
 
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20161010072405) do
   add_foreign_key "answers", "answer_versions", column: "current_version_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users", column: "author_id"
+  add_foreign_key "corrections", "answer_versions"
   add_foreign_key "corrections", "answers"
   add_foreign_key "corrections", "users", column: "author_id"
   add_foreign_key "questions", "answers", column: "best_answer_id"

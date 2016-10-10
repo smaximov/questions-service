@@ -1,0 +1,18 @@
+var answer = $('#answer-<%= @answer.id %>')
+var correction = $('<%= j(render @correction) %>')
+
+answer.find('.correction[data-id="<%= @correction.id %>"]').remove()
+answer.find('.corrections').append(correction)
+
+var meta = $('<%= j(render 'answers/corrections_meta', answer: @answer.reload ) %>')
+var updatedAnswer = $('<div class="answer-body">').text('<%= j(@new_version.text) %>')
+answer.find('.corrections-meta').replaceWith(meta)
+answer.find('.answer-body').replaceWith(updatedAnswer)
+
+var bestAnswer = $('#best-answer .answer[data-id="<%= @answer.id %>"]')
+if (bestAnswer.length > 0) {
+  bestAnswer.find('.corrections-meta').replaceWith(meta.clone())
+  bestAnswer.find('.answer-body').replaceWith(updatedAnswer.clone())
+}
+
+correction.find('time[data-time-ago]').timeago();

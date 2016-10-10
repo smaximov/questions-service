@@ -1,5 +1,11 @@
 ---
 en:
+  activemodel:
+    models:
+      accept_correction_form: Correction
+    attributes:
+      accept_correction_form:
+        text: Text
   activerecord:
     attributes:
       answer:
@@ -35,6 +41,7 @@ en:
         other: "%{count} corrections pending"
   corrections:
     correction:
+      accept: Accept
       accepted: accepted
     form:
       cancel: Cancel

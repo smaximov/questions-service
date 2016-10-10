@@ -1,5 +1,5 @@
 var answer = $('#answer-<%= @answer.id %>')
-correction = $('<%= j(render @correction) %>')
+var correction = $('<%= j(render @correction) %>')
 
 answer.find('.correction-form-btn').show()
 answer.find('.correction-form').replaceWith($('<div class="correction-form">'))

@@ -1,4 +1,5 @@
-.correction class=('pending' unless correction.accepted?)
+.correction [ class=('pending' unless correction.accepted?)
+              data-id=correction.id ]
   .correction-body
     = correction.text
   .correction-info
@@ -8,3 +9,7 @@
       ' ,
       => t('.accepted')
       = relative_time_tag(correction.accepted_at)
+    - elsif current_user?(correction.answer.author)
+      =< link_to t('.accept'), accepting_correction_path(correction.id),
+         class: 'btn btn-primary btn-xs accept-correction-btn', remote: true
+      .accept-correction-form

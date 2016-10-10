@@ -54,6 +54,7 @@ module AssociationMatchers
 
     option_chain :class_name
     option_chain :foreign_key
+    option_chain :optional
 
     private
 

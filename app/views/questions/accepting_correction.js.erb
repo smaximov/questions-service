@@ -1,0 +1,12 @@
+var answer = $('#answer-<%= @answer.id %>')
+var correction = answer.find('.correction[data-id="<%= @correction.id %>"]')
+var acceptCorrectionButton = correction.find('.accept-correction-btn')
+acceptCorrectionButton.hide()
+var acceptCorrectionForm = $('<%= j(render 'corrections/accept_form') %>')
+
+acceptCorrectionForm.on('click', 'button[type="reset"]', function () {
+  acceptCorrectionForm.replaceWith($('<div class="accept-correction-form">'))
+  acceptCorrectionButton.show()
+})
+
+correction.find('.accept-correction-form').replaceWith(acceptCorrectionForm)

@@ -12,6 +12,7 @@ RSpec.describe Correction, type: :model do
 
   it { is_expected.to belong_to(:author).class_name(::User) }
   it { is_expected.to belong_to(:answer) }
+  it { is_expected.to belong_to(:answer_version).class_name(::Answer::Version).optional(true) }
 
   describe '#text' do
     it 'is required' do
