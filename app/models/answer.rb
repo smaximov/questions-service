@@ -9,6 +9,7 @@ class Answer < ApplicationRecord
   # Do I really need this if I already has belongs_to :question?
   # has_one :question, foreign_key: :best_answer_id
   has_many :corrections
+  belongs_to :current_version, class_name: ::Answer::Version, optional: true
 
   default_scope { order(created_at: :desc) }
 
