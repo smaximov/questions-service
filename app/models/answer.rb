@@ -6,7 +6,7 @@ class Answer < ApplicationRecord
 
   before_create :create_initial_version
 
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, class_name: ::User
   belongs_to :question, counter_cache: true
   # Do I really need this if I already has belongs_to :question?
   # has_one :question, foreign_key: :best_answer_id

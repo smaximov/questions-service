@@ -10,7 +10,7 @@ RSpec.describe Correction, type: :model do
     expect(correction).to be_valid
   end
 
-  it { is_expected.to belong_to(:author).class_name('User') }
+  it { is_expected.to belong_to(:author).class_name(::User) }
   it { is_expected.to belong_to(:answer) }
 
   describe '#text' do

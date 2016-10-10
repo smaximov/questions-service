@@ -8,7 +8,7 @@ RSpec.describe Answer, type: :model do
     expect(answer).to be_valid
   end
 
-  it { is_expected.to belong_to(:author).class_name('User') }
+  it { is_expected.to belong_to(:author).class_name(::User) }
   it { is_expected.to belong_to(:question) }
   it { is_expected.to have_many(:corrections) }
   it { is_expected.to belong_to(:current_version).class_name(::Answer::Version) }
