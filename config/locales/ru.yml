@@ -31,6 +31,7 @@ ru:
         one: "%{count} исправление ожидает проверки"
         other: "%{count} исправления ожидают проверки"
       permalink: ссылка
+      suggest_correction: Предложить правку
     best_answer_button:
       best: Лучший ответ
       cancel: Снять отметку

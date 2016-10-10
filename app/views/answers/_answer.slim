@@ -23,4 +23,8 @@
 
   - unless local_assigns[:best]
     .corrections
+      .correction-form
+        - if user_signed_in?
+          = link_to t('.suggest_correction'), suggest_correction_path(answer.id), class: 'btn btn-xs btn-primary'
+
       = render answer.corrections

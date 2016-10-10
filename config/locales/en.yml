@@ -27,6 +27,7 @@ en:
         one: "%{count} correction pending"
         other: "%{count} corrections pending"
       permalink: permalink
+      suggest_correction: Suggest a correction
     best_answer_button:
       best: Best answer
       cancel: Remove mark

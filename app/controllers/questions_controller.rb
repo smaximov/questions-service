@@ -2,7 +2,7 @@
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user!,
-                only: %i(new create create_answer mark_as_best cancel_best)
+                only: %i(new create create_answer mark_as_best cancel_best suggest_correction)
 
   def new
     @question = current_user.questions.build
@@ -58,6 +58,10 @@ class QuestionsController < ApplicationController
 
     answer.remove_best_mark
     redirect_to question_path(answer.question)
+  end
+
+  def suggest_correction
+    raise NotImplementedError
   end
 
   private
