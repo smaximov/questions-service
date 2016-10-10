@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Correction < ApplicationRecord
-  belongs_to :answer, counter_cache: true
+  belongs_to :answer
   belongs_to :author, class_name: 'User'
 
   validates :text, presence: true
@@ -11,11 +11,16 @@ class Correction < ApplicationRecord
 
   attribute :text, :stripped_text
 
-  counter_culture :answer, column_name: ->(model) { :accepted_corrections_count if model.accepted? }
+  counter_culture :answer, column_name: ->(model) { "#{model.status}_corrections_count" }
 
   # Return true if the correction is accepted.
   def accepted?
     accepted_at.present?
+  end
+
+  # Return :accepted if the correction is accepted, :pending otherwise.
+  def status
+    accepted? ? :accepted : :pending
   end
 
   private

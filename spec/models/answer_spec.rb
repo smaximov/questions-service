@@ -123,12 +123,23 @@ RSpec.describe Answer, type: :model do
     end
   end
 
-  describe '#corrections_count' do
-    it 'caches #corrections.count' do
-      answer.save!
-      expect {
-        FactoryGirl.create(:correction, answer: answer)
-      }.to change { answer.corrections_count }.by(1)
+  describe '#pending_corrections_count' do
+    before { answer.save! }
+
+    context 'when the newly created correction is accepted' do
+      it "doesn't change" do
+        expect {
+          FactoryGirl.create(:correction, answer: answer, accepted_at: Time.current)
+        }.not_to change { answer.reload.pending_corrections_count }
+      end
+    end
+
+    context 'when the newly created correction is not yet accepted' do
+      it 'changes by 1' do
+        expect {
+          FactoryGirl.create(:correction, answer: answer)
+        }.to change { answer.reload.pending_corrections_count }.by(1)
+      end
     end
   end
 

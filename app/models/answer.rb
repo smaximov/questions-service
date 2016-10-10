@@ -39,9 +39,4 @@ class Answer < ApplicationRecord
   def best?
     question.best_answer == self
   end
-
-  # Return the number of corrections yet to be accepted.
-  def pending_corrections_count
-    corrections_count - accepted_corrections_count
-  end
 end
