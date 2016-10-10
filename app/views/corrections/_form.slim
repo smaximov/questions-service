@@ -1,0 +1,10 @@
+= form_for(@correction, url: create_correction_path(@correction.answer.id),
+                        remote: true, html: { class: 'correction-form' }) do |f|
+  = error_messages_for @correction
+
+  .form-group
+    = f.text_area :text, rows: 10, class: 'form-control'
+
+  .form-group
+    => f.submit t('answers.answer.suggest_correction'), class: 'btn btn-primary'
+    button.btn.btn-warning type="reset" = t('.cancel')

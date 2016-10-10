@@ -1,0 +1,5 @@
+.corrections-meta
+  - unless answer.accepted_corrections_count.zero?
+    => t('.corrections', count: answer.accepted_corrections_count)
+  - if current_user?(answer.question.author) && !answer.pending_corrections_count.zero?
+    | (#{t('.pending_corrections', count: answer.pending_corrections_count)})

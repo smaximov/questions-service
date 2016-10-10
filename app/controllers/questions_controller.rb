@@ -2,7 +2,7 @@
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user!,
-                only: %i(new create create_answer mark_as_best cancel_best suggest_correction)
+                only: %i(new create create_answer mark_as_best cancel_best suggest_correction create_correction)
 
   def new
     @question = current_user.questions.build
@@ -61,7 +61,22 @@ class QuestionsController < ApplicationController
   end
 
   def suggest_correction
-    raise NotImplementedError
+    @answer = Answer.find(params[:id])
+    @correction = @answer.corrections.build
+    respond_to :js
+  end
+
+  def create_correction
+    @answer = Answer.find(params[:id])
+    @correction = @answer.corrections.build(correction_params)
+
+    respond_to do |format|
+      if @correction.save
+        format.js
+      else
+        format.js { render :suggest_correction }
+      end
+    end
   end
 
   private
@@ -72,6 +87,10 @@ class QuestionsController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:answer)
+  end
+
+  def correction_params
+    params.require(:correction).permit(:text).merge(author_id: current_user.id)
   end
 
   def answer_to(question)

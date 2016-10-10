@@ -25,6 +25,9 @@ class CorrectionsForUserQuery
     end
   end
 
+  ONLY_ACCEPTED_ORDER = :accepted_at
+  MIXED_ORDER = 'accepted_at ASC NULLS FIRST, created_at DESC'
+
   private
 
   attr_reader :user
@@ -32,20 +35,20 @@ class CorrectionsForUserQuery
   def corrections_for_author(answer)
     answer
       .corrections
-      .order(:accepted_at, :created_at)
+      .order(MIXED_ORDER)
   end
 
   def corrections_for_everyone(answer)
     answer
       .corrections
       .where.not(accepted_at: nil)
-      .order(:accepted_at)
+      .order(ONLY_ACCEPTED_ORDER)
   end
 
   def corrections_for_rest_users(answer)
     answer
       .corrections
       .where('author_id = ? OR accepted_at IS NOT NULL', user.id)
-      .order(:accepted_at, :created_at)
+      .order(MIXED_ORDER)
   end
 end

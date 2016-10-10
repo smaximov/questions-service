@@ -1,0 +1,11 @@
+var answer = $('#answer-<%= @answer.id %>')
+var correctionFormButton = answer.find('.correction-form-btn')
+correctionFormButton.hide()
+var correctionForm = $('<%= j(render 'corrections/form') %>')
+
+correctionForm.on('click', 'button[type="reset"]', function () {
+  correctionForm.replaceWith($('<div class="correction-form">'))
+  correctionFormButton.show()
+})
+
+answer.find('.correction-form').replaceWith(correctionForm)

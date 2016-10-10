@@ -20,6 +20,13 @@ ru:
   answers:
     answer:
       answered: ответил(а)
+      permalink: ссылка
+      suggest_correction: Предложить правку
+    best_answer_button:
+      best: Лучший ответ
+      cancel: Снять отметку
+      mark: Отметить как лучший ответ
+    corrections_meta:
       corrections:
         few: "%{count} исправления"
         many: "%{count} исправлений"
@@ -30,15 +37,11 @@ ru:
         many: "%{count} исправлений ожидают проверки"
         one: "%{count} исправление ожидает проверки"
         other: "%{count} исправления ожидают проверки"
-      permalink: ссылка
-      suggest_correction: Предложить правку
-    best_answer_button:
-      best: Лучший ответ
-      cancel: Снять отметку
-      mark: Отметить как лучший ответ
   corrections:
     correction:
       accepted: принято
+    form:
+      cancel: Отменить
   devise:
     sessions:
       new:

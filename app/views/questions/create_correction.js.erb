@@ -1,0 +1,16 @@
+var answer = $('#answer-<%= @answer.id %>')
+correction = $('<%= j(render @correction) %>')
+
+answer.find('.correction-form-btn').show()
+answer.find('.correction-form').replaceWith($('<div class="correction-form">'))
+answer.find('.corrections').prepend(correction)
+
+var meta = $('<%= j(render 'answers/corrections_meta', answer: @answer.reload ) %>')
+answer.find('.corrections-meta').replaceWith(meta)
+
+var bestAnswerMeta = $('#best-answer .answer[data-id="<%= @answer.id %>"] .corrections-meta')
+if (bestAnswerMeta.length > 0) {
+  bestAnswerMeta.replaceWith(meta.clone())
+}
+
+correction.find('time[data-time-ago]').timeago();

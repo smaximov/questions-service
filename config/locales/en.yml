@@ -20,21 +20,24 @@ en:
   answers:
     answer:
       answered: answered
-      corrections:
-        one: "%{count} correction"
-        other: "%{count} corrections"
-      pending_corrections:
-        one: "%{count} correction pending"
-        other: "%{count} corrections pending"
       permalink: permalink
       suggest_correction: Suggest a correction
     best_answer_button:
       best: Best answer
       cancel: Remove mark
       mark: Mark as best answer
+    corrections_meta:
+      corrections:
+        one: "%{count} correction"
+        other: "%{count} corrections"
+      pending_corrections:
+        one: "%{count} correction pending"
+        other: "%{count} corrections pending"
   corrections:
     correction:
       accepted: accepted
+    form:
+      cancel: Cancel
   devise:
     sessions:
       new:

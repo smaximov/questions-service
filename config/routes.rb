@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     post '/answers/:id/best', to: 'questions#mark_as_best', as: :answer_mark_as_best
     delete '/answers/:id/best', to: 'questions#cancel_best', as: :answer_cancel_best
     get '/answers/:id/correction', to: 'questions#suggest_correction', as: :suggest_correction
+    post '/answers/:id/correction', to: 'questions#create_correction', as: :create_correction
 
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
   end
