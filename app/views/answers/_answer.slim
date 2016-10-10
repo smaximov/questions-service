@@ -9,7 +9,7 @@
         = link_to t('.permalink'), answer_permalink_path(answer.id), data: { turbolinks: "false" }
         | ]
   .answer-body
-    = answer.answer
+    = answer.current_version.text
   .answer-info
     .answer-meta
       => imprint(answer.author)

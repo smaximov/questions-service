@@ -163,4 +163,14 @@ RSpec.describe Answer, type: :model do
       end
     end
   end
+
+  describe Answer::Version do
+    context 'when a new Answer record is saved' do
+      it 'is created' do
+        expect {
+          answer.save!
+        }.to change { Answer::Version.count }.by(1)
+      end
+    end
+  end
 end

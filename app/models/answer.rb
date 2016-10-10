@@ -4,6 +4,8 @@ class Answer < ApplicationRecord
 
   paginates_per ANSWERS_PER_PAGE
 
+  before_create :create_initial_version
+
   belongs_to :author, class_name: 'User'
   belongs_to :question, counter_cache: true
   # Do I really need this if I already has belongs_to :question?
@@ -11,7 +13,10 @@ class Answer < ApplicationRecord
   has_many :corrections
   belongs_to :current_version, class_name: ::Answer::Version, optional: true
 
-  default_scope { order(created_at: :desc) }
+  default_scope do
+    order(created_at: :desc)
+      .includes(:current_version, :author)
+  end
 
   validates :answer, presence: true
   validates :answer, length: 20..5000, allow_blank: true
@@ -39,5 +44,14 @@ class Answer < ApplicationRecord
   # Check if the answer is the best answer to the corresponding question
   def best?
     question.best_answer == self
+  end
+
+  private
+
+  # Create the initial version of the answer.
+  def create_initial_version
+    return if answer.blank?
+
+    create_current_version!(text: answer)
   end
 end
