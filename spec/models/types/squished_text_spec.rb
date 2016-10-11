@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe StrippedText, type: :type do
+RSpec.describe SquishedText, type: :type do
   describe '#cast' do
     it 'strips surrounding whitespace from strings' do
       expect(subject.cast("\v\r foo \n\t")).to eq('foo')
+    end
+
+    it 'squishes consecutive whitespace groups' do
+      expect(subject.cast("foo \v\n\t bar")).to eq('foo bar')
     end
 
     it 'accepts nil' do

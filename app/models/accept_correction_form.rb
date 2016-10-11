@@ -24,6 +24,6 @@ class AcceptCorrectionForm
   end
 
   def text=(value)
-    @text = StrippedText.new.cast(value)
+    @text = SquishedText.new.cast(value)
   end
 end

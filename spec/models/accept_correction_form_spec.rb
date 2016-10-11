@@ -22,10 +22,17 @@ RSpec.describe AcceptCorrectionForm, type: :model do
       subject.text = 'a' * 5001
       expect(subject).to have_errors_on(:text).only.exactly(1).message(:too_long, count: 5000)
     end
+  end
 
-    it 'is stripped of surrounding whitespace' do
+  describe '#text=' do
+    it 'strips surrounding whitespace' do
       subject.text = "  foobar \n\t"
       expect(subject.text).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      subject.text = "foo \n\v\t bar"
+      expect(subject.text).to eq('foo bar')
     end
   end
 end

@@ -43,11 +43,6 @@ RSpec.describe Question, type: :model do
       expect(question).to have_errors_on(:title).only.exactly(1).message(:blank)
     end
 
-    it 'is stripped of surrounding whitespace' do
-      question.title = " Question Title \n\t"
-      expect(question.title).to eq('Question Title')
-    end
-
     it 'is at least 10 characters' do
       question.title = 'a' * 9
       expect(question).to have_errors_on(:title).only.exactly(1).message(:too_short, count: 10)
@@ -56,6 +51,18 @@ RSpec.describe Question, type: :model do
     it 'is at most 200 characters' do
       question.title = 'a' * 201
       expect(question).to have_errors_on(:title).only.exactly(1).message(:too_long, count: 200)
+    end
+  end
+
+  describe '#title=' do
+    it 'strips surrounding whitespace' do
+      question.title = "  foobar \n\t"
+      expect(question.title).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      question.title = "foo \n\v\t bar"
+      expect(question.title).to eq('foo bar')
     end
   end
 
@@ -70,11 +77,6 @@ RSpec.describe Question, type: :model do
       expect(question).to have_errors_on(:question).only.exactly(1).message(:blank)
     end
 
-    it 'is stripped of surrounding whitespace' do
-      question.question = " Question Body \n\t"
-      expect(question.question).to eq('Question Body')
-    end
-
     it 'is at least 20 characters' do
       question.question = 'a' * 19
       expect(question).to have_errors_on(:question).only.exactly(1).message(:too_short, count: 20)
@@ -83,6 +85,18 @@ RSpec.describe Question, type: :model do
     it 'is at most 5000 characters' do
       question.question = 'a' * 5001
       expect(question).to have_errors_on(:question).only.exactly(1).message(:too_long, count: 5000)
+    end
+  end
+
+  describe '#question=' do
+    it 'strips surrounding whitespace' do
+      question.question = "  foobar \n\t"
+      expect(question.question).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      question.question = "foo \n\v\t bar"
+      expect(question.question).to eq('foo bar')
     end
   end
 

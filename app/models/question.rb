@@ -14,6 +14,6 @@ class Question < ApplicationRecord
   validates :question, presence: true
   validates :question, length: { within: 20..5000 }, allow_blank: true
 
-  attribute :title, :stripped_text
-  attribute :question, :stripped_text
+  attribute :title, :squished_text
+  attribute :question, :squished_text
 end

@@ -50,10 +50,17 @@ RSpec.describe User, type: :model do
       user.username = 'a' * 21
       expect(user).to have_errors_on(:username).only.exactly(1).message(:too_long, count: 20)
     end
+  end
 
-    it 'is stripped of surrounding whitespace' do
-      user.username = " john.doe \n\t"
-      expect(user.username).to eq('john.doe')
+  describe '#username=' do
+    it 'strips surrounding whitespace' do
+      user.username = "  foobar \n\t"
+      expect(user.username).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      user.username = "foo \n\v\t bar"
+      expect(user.username).to eq('foo bar')
     end
   end
 
@@ -77,17 +84,29 @@ RSpec.describe User, type: :model do
       user.fullname = 'a' * 31
       expect(user).to have_errors_on(:fullname).only.exactly(1).message(:too_long, count: 30)
     end
+  end
 
-    it 'is stripped of surrounded whitespace' do
-      user.fullname = " John Doe \n\t"
-      expect(user.fullname).to eq('John Doe')
+  describe '#fullname=' do
+    it 'strips surrounding whitespace' do
+      user.fullname = "  foobar \n\t"
+      expect(user.fullname).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      user.fullname = "foo \n\v\t bar"
+      expect(user.fullname).to eq('foo bar')
     end
   end
 
-  describe '#login' do
-    it 'is stripped of surrounding whitespace' do
-      user.login = " john.doe \n\t"
-      expect(user.login).to eq('john.doe')
+  describe '#login=' do
+    it 'strips surrounding whitespace' do
+      user.login = "  foobar \n\t"
+      expect(user.login).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      user.login = "foo \n\v\t bar"
+      expect(user.login).to eq('foo bar')
     end
   end
 end

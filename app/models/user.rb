@@ -22,10 +22,10 @@ class User < ApplicationRecord
          :confirmable
 
   # Virtual attribute for authentication by either username or email
-  attribute :login, :stripped_text
+  attribute :login, :squished_text
 
-  attribute :username, :stripped_text
-  attribute :fullname, :stripped_text
+  attribute :username, :squished_text
+  attribute :fullname, :squished_text
 
   def self.find_for_database_authentication(conditions)
     login = conditions.delete(:login)

@@ -32,9 +32,16 @@ RSpec.describe Correction, type: :model do
       correction.text = 'a' * 501
       expect(correction).to have_errors_on(:text).only.exactly(1).message(:too_long, count: 500)
     end
+  end
 
-    it 'is stripped of surrounding whitespace' do
-      correction.text = "  foo bar \n\t"
+  describe '#text=' do
+    it 'strips surrounding whitespace' do
+      correction.text = "  foobar \n\t"
+      expect(correction.text).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      correction.text = "foo \n\v\t bar"
       expect(correction.text).to eq('foo bar')
     end
   end

@@ -42,10 +42,17 @@ RSpec.describe Answer, type: :model do
       answer.answer = 'a' * 5001
       expect(answer).to have_errors_on(:answer).only.exactly(1).message(:too_long, count: 5000)
     end
+  end
 
-    it 'is stripped of surrounding whitespace' do
-      answer.answer = " Answer Body \n\t"
-      expect(answer.answer).to eq('Answer Body')
+  describe '#answer=' do
+    it 'strips surrounding whitespace' do
+      answer.answer = "  foobar \n\t"
+      expect(answer.answer).to eq('foobar')
+    end
+
+    it 'squishes consecutive whitespace' do
+      answer.answer = "foo \n\v\t bar"
+      expect(answer.answer).to eq('foo bar')
     end
   end
 

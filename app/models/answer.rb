@@ -21,7 +21,7 @@ class Answer < ApplicationRecord
   validates :answer, presence: true
   validates :answer, length: 20..5000, allow_blank: true
 
-  attribute :answer, :stripped_text
+  attribute :answer, :squished_text
 
   # Determine the page the answer appears on.
   def page

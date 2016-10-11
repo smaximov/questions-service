@@ -8,7 +8,7 @@ class Correction < ApplicationRecord
   validates :text, presence: true
   validates :text, length: 20..500, allow_blank: true
 
-  attribute :text, :stripped_text
+  attribute :text, :squished_text
 
   counter_culture :answer, column_name: ->(model) { "#{model.status}_corrections_count" }
 
