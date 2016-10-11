@@ -8,10 +8,9 @@ RSpec.describe CorrectionsForUserQuery, type: :query do
   let(:answer) { FactoryGirl.create(:answer, author: answer_author) }
 
   before do
-    # Note that when an answer's author make a correction, it gets
-    # accepted implicitly.
-    answer.corrections.create!(text: "Answer's correction text",
-                               author: answer_author)
+    correction = answer.corrections.create!(text: "Answer's correction text",
+                                            author: answer_author)
+    correction.accept(AcceptCorrectionForm.from_correction(correction))
 
     answer.corrections.create!(text: "Answer's correction text",
                                author: user)
@@ -37,7 +36,7 @@ RSpec.describe CorrectionsForUserQuery, type: :query do
       end
     end
 
-    context 'when views by some other user' do
+    context 'when viewn by some other user' do
       it 'returns accepted corrections and corrections made by that user' do
         query = CorrectionsForUserQuery.new(other_user)
         expect(query.results(answer).count).to eq(3)

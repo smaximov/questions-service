@@ -22,6 +22,7 @@ gem 'devise-i18n', '~> 1.1.0'
 gem 'faker', '~> 1.6.6'
 gem 'rails-timeago', '~> 2.15.0'
 gem 'counter_culture', '~> 0.2.2'
+gem 'diff-lcs', '~> 1.2.5'
 
 group :development, :test do
   gem 'byebug', platform: :mri

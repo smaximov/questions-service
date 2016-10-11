@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!,
                 only: %i(new create create_answer mark_as_best cancel_best
                          suggest_correction create_correction accepting_correction accept_correction)
-  before_action :find_correction_and_answer, only: %i(accepting_correction accept_correction)
+  before_action :find_correction_and_answer, only: %i(accepting_correction accept_correction correction_diff)
 
   def new
     @question = current_user.questions.build
@@ -100,6 +100,12 @@ class QuestionsController < ApplicationController
         format.js { render :accepting_correction }
       end
     end
+  end
+
+  def correction_diff
+    @correction_version = @correction.answer_version
+    @previous_version = @correction_version.previous_version
+    respond_to :js
   end
 
   private

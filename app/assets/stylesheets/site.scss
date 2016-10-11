@@ -188,3 +188,15 @@ main.container {
 .accept-correction-form {
   margin-top: 15px;
 }
+
+.diff {
+  ins {
+    background-color: #d0f8df;
+    text-decoration: none;
+  }
+
+  del {
+    background-color: #ffb1b1;
+    text-decoration: none;
+  }
+}

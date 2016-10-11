@@ -1,13 +1,13 @@
 .correction [ class=('pending' unless correction.accepted?)
               data-id=correction.id ]
   .correction-body
-    = correction.text
+    = correction.correction
   .correction-info
     => imprint(correction.author)
     = relative_time_tag(correction.created_at)
     - if correction.accepted?
       ' ,
-      => t('.accepted')
+      => link_to t('.accepted'), correction_diff_path(correction.id), class: 'diff-anchor', remote: true
       = relative_time_tag(correction.accepted_at)
     - elsif current_user?(correction.answer.author)
       =< link_to t('.accept'), accepting_correction_path(correction.id),

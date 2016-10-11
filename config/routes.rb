@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     post '/answers/:id/correction', to: 'questions#create_correction', as: :create_correction
     get '/corrections/:id/accept', to: 'questions#accepting_correction', as: :accepting_correction
     post '/corrections/:id/accept', to: 'questions#accept_correction', as: :accept_correction
+    get '/corrections/:id/diff', to: 'questions#correction_diff', as: :correction_diff
 
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
   end

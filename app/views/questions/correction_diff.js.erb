@@ -1,0 +1,3 @@
+var correction = $('.correction[data-id="<%= @correction.id %>"]')
+var correctionBody = correction.find('.correction-body')
+correctionBody.html('<%= j(render_diff @previous_version.text, @correction_version.text) %>')

@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010132655) do
+ActiveRecord::Schema.define(version: 20161011070239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answer_versions", force: :cascade do |t|
-    t.text     "text",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "text",                null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "previous_version_id"
+    t.index ["previous_version_id"], name: "index_answer_versions_on_previous_version_id", using: :btree
   end
 
   create_table "answers", force: :cascade do |t|
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(version: 20161010132655) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "answer_versions", "answer_versions", column: "previous_version_id"
   add_foreign_key "answers", "answer_versions", column: "current_version_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users", column: "author_id"
