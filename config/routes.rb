@@ -41,11 +41,12 @@ Rails.application.routes.draw do
     get '/answers/:id', to: 'questions#answer', as: :answer_permalink
     post '/answers/:id/best', to: 'questions#mark_as_best', as: :answer_mark_as_best
     delete '/answers/:id/best', to: 'questions#cancel_best', as: :answer_cancel_best
-    get '/answers/:id/correction', to: 'questions#suggest_correction', as: :suggest_correction
-    post '/answers/:id/correction', to: 'questions#create_correction', as: :create_correction
-    get '/corrections/:id/accept', to: 'questions#accepting_correction', as: :accepting_correction
-    post '/corrections/:id/accept', to: 'questions#accept_correction', as: :accept_correction
-    get '/corrections/:id/diff', to: 'questions#correction_diff', as: :correction_diff
+
+    get '/answers/:id/correction', to: 'corrections#new', as: :suggest_correction
+    post '/answers/:id/correction', to: 'corrections#create', as: :create_correction
+    get '/corrections/:id/accept', to: 'corrections#accepting', as: :accepting_correction
+    post '/corrections/:id/accept', to: 'corrections#accept', as: :accept_correction
+    get '/corrections/:id/diff', to: 'corrections#diff', as: :correction_diff
 
     get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
   end
