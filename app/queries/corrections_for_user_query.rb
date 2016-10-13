@@ -18,11 +18,12 @@ class CorrectionsForUserQuery
   # @param answer [Answer]
   #   the answer which corrections are to query.
   def results(answer)
-    case user
-    when answer.author then corrections_for_author(answer)
-    when nil then corrections_for_everyone(answer)
-    else corrections_for_rest_users(answer)
-    end
+    query_method = case user
+                   when answer.author then :corrections_for_author
+                   when nil then :corrections_for_everyone
+                   else :corrections_for_rest_users
+                   end
+    __send__(query_method, corrections_scope(answer))
   end
 
   ONLY_ACCEPTED_ORDER = :accepted_at
@@ -32,23 +33,23 @@ class CorrectionsForUserQuery
 
   attr_reader :user
 
-  def corrections_for_author(answer)
-    answer
-      .corrections
-      .order(MIXED_ORDER)
+  def corrections_for_author(scope)
+    scope.order(MIXED_ORDER)
   end
 
-  def corrections_for_everyone(answer)
-    answer
-      .corrections
+  def corrections_for_everyone(scope)
+    scope
       .where.not(accepted_at: nil)
       .order(ONLY_ACCEPTED_ORDER)
   end
 
-  def corrections_for_rest_users(answer)
-    answer
-      .corrections
+  def corrections_for_rest_users(scope)
+    scope
       .where('author_id = ? OR accepted_at IS NOT NULL', user.id)
       .order(MIXED_ORDER)
+  end
+
+  def corrections_scope(answer)
+    answer.corrections.includes(:answer_version, :author)
   end
 end

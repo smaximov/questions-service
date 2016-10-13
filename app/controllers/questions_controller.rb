@@ -30,7 +30,8 @@ class QuestionsController < ApplicationController
   end
 
   def question_answers(question)
-    AnswersWithCorrectionsQuery.new(current_user, question.answers.page(params[:page])).results
+    answers_scope = question.answers.includes(:author, :current_version).page(params[:page])
+    AnswersWithCorrectionsQuery.new(current_user, answers_scope).results
   end
 
   def render_answer_form?

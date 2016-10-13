@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user_if_tab_is_mine!
 
   def index
-    @questions = questions.page(params[:page])
+    @questions = questions.includes(:best_answer, :author).page(params[:page])
   end
 
   private

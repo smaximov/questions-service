@@ -13,10 +13,7 @@ class Answer < ApplicationRecord
   has_many :corrections
   belongs_to :current_version, class_name: ::Answer::Version, optional: true
 
-  default_scope do
-    order(created_at: :desc)
-      .includes(:current_version, :author)
-  end
+  default_scope { order(created_at: :desc) }
 
   validates :answer, presence: true
   validates :answer, length: 20..5000, allow_blank: true
