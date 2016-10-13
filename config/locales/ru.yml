@@ -1,11 +1,11 @@
 ---
 ru:
   activemodel:
-    models:
-      accept_correction_form: Исправление
     attributes:
       accept_correction_form:
         text: Текст
+    models:
+      accept_correction_form: Исправление
   activerecord:
     attributes:
       answer:
@@ -43,6 +43,8 @@ ru:
         many: "%{count} исправлений ожидают проверки"
         one: "%{count} исправление ожидает проверки"
         other: "%{count} исправления ожидают проверки"
+    create:
+      success: Новый ответ добавлен успешно!
   corrections:
     correction:
       accept: Принять
@@ -83,8 +85,6 @@ ru:
   questions:
     create:
       success: Новый вопрос создан успешно!
-    create_answer:
-      success: Новый ответ добавлен успешно!
     new:
       create: Создать
       new: Новый вопрос

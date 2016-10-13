@@ -25,7 +25,7 @@ RSpec.feature 'Answer creation' do
       within('#new_answer') do
         click_button I18n.t('questions.show.answer')
       end
-      expect(page).not_to have_css('.flash-messages', text: I18n.t('questions.create_answer.success'))
+      expect(page).not_to have_css('.flash-messages', text: I18n.t('answers.create.success'))
       expect(page).to have_css('.error_messages')
     end
 
@@ -35,7 +35,7 @@ RSpec.feature 'Answer creation' do
         fill_in I18n.t('questions.show.your_answer'), with: answer
         click_button I18n.t('questions.show.answer')
       end
-      expect(page).to have_css('.flash-messages', text: I18n.t('questions.create_answer.success'))
+      expect(page).to have_css('.flash-messages', text: I18n.t('answers.create.success'))
       expect(page).not_to have_css('.error_messages')
       expect(page).to have_css('.answer', text: answer)
     end

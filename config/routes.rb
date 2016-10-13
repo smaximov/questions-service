@@ -32,22 +32,24 @@ Rails.application.routes.draw do
     get '/page/:page', to: 'home#index'
 
     devise_for :users
+    get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
 
+    # Questions
     get '/questions/new', to: 'questions#new', as: :new_question
     get '/questions/:id(/page/:page)', to: 'questions#show', as: :question
     post '/questions/new', to: 'questions#create', as: :questions
-    post '/questions/:id', to: 'questions#create_answer', as: :question_answers
 
-    get '/answers/:id', to: 'questions#answer', as: :answer_permalink
-    post '/answers/:id/best', to: 'questions#mark_as_best', as: :answer_mark_as_best
-    delete '/answers/:id/best', to: 'questions#cancel_best', as: :answer_cancel_best
+    # Answers
+    post '/questions/:id', to: 'answers#create', as: :question_answers
+    get '/answers/:id', to: 'answers#permalink', as: :answer_permalink
+    post '/answers/:id/best', to: 'answers#mark_as_best', as: :answer_mark_as_best
+    delete '/answers/:id/best', to: 'answers#cancel_best', as: :answer_cancel_best
 
+    # Corrections
     get '/answers/:id/correction', to: 'corrections#new', as: :suggest_correction
     post '/answers/:id/correction', to: 'corrections#create', as: :create_correction
     get '/corrections/:id/accept', to: 'corrections#accepting', as: :accepting_correction
     post '/corrections/:id/accept', to: 'corrections#accept', as: :accept_correction
     get '/corrections/:id/diff', to: 'corrections#diff', as: :correction_diff
-
-    get '/users', to: redirect(UrlHelpersRedirector.new_user_registration_path)
   end
 end

@@ -1,11 +1,11 @@
 ---
 en:
   activemodel:
-    models:
-      accept_correction_form: Correction
     attributes:
       accept_correction_form:
         text: Text
+    models:
+      accept_correction_form: Correction
   activerecord:
     attributes:
       answer:
@@ -39,6 +39,8 @@ en:
       pending_corrections:
         one: "%{count} correction pending"
         other: "%{count} corrections pending"
+    create:
+      success: Successfully created new answer!
   corrections:
     correction:
       accept: Accept
@@ -77,8 +79,6 @@ en:
   questions:
     create:
       success: Successfully created new question!
-    create_answer:
-      success: Successfully created new answer!
     new:
       create: Create
       new: New question
