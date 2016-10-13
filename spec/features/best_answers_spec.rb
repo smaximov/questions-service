@@ -69,7 +69,7 @@ RSpec.feature 'Best answers' do
   private
 
   def visit_question_path
-    visit question_path(question, locale: I18n.locale)
+    visit question_path(question)
   end
 
   def mark_as_best_button

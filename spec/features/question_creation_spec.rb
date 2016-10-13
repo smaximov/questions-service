@@ -7,7 +7,7 @@ RSpec.feature 'Question creation' do
   context 'When the user is signed out' do
     scenario 'Visiting question creation path' do
       visit new_question_path
-      expect(page).to have_current_path(new_user_session_path)
+      expect(page).to have_current_path(new_user_session_path(locale: nil))
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.feature 'Question creation' do
         click_button 'Create'
       end
       expect(page).not_to have_css('.flash-messages', text: I18n.t('questions.create.success'))
-      expect(page).to have_current_path(questions_path(locale: I18n.locale))
+      expect(page).to have_current_path(questions_path)
       expect(page).to have_css('.error_messages')
     end
 
@@ -38,7 +38,7 @@ RSpec.feature 'Question creation' do
         click_button 'Create'
       end
       expect(page).not_to have_css('.flash-messages', text: I18n.t('questions.create.success'))
-      expect(page).to have_current_path(questions_path(locale: I18n.locale))
+      expect(page).to have_current_path(questions_path)
       expect(page).to have_css('.error_messages')
     end
 

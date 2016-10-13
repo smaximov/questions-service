@@ -20,7 +20,7 @@ RSpec.feature 'Locale' do
 
   scenario 'Setting Accept-Language HTTP header' do
     page.driver.header 'Accept-Language', 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'
-    visit root_path
+    visit root_path(locale: nil)
     expect(page).to have_css('.navbar .change_locale', text: 'Язык')
   end
 end

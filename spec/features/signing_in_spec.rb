@@ -12,7 +12,7 @@ RSpec.feature 'Signing in' do
       click_button I18n.t('devise.sessions.new.sign_in')
     end
     expect(page).to have_css('.flash-messages .alert-notice', text: 'successfully')
-    expect(page).to have_current_path(root_path(locale: I18n.locale))
+    expect(page).to have_current_path(root_path)
   end
 
   scenario 'Using email as login' do
@@ -23,6 +23,6 @@ RSpec.feature 'Signing in' do
       click_button I18n.t('devise.sessions.new.sign_in')
     end
     expect(page).to have_css('.flash-messages .alert-notice', text: 'successfully')
-    expect(page).to have_current_path(root_path(locale: I18n.locale))
+    expect(page).to have_current_path(root_path)
   end
 end

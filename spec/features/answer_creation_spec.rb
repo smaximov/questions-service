@@ -6,7 +6,7 @@ RSpec.feature 'Answer creation' do
 
   context 'When the user is signed out' do
     scenario "Question view doesn't displays the new answer form" do
-      visit question_path(question, locale: I18n.locale)
+      visit question_path(question)
       expect(page).not_to have_css('form#new_answer')
     end
   end
@@ -14,7 +14,7 @@ RSpec.feature 'Answer creation' do
   context 'When the user is signed in' do
     background do
       login_as question.author
-      visit question_path(question, locale: I18n.locale)
+      visit question_path(question)
     end
 
     scenario 'Question view displays the new answer form' do

@@ -62,4 +62,8 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include ActiveSupport::Testing::TimeHelpers
+
+  config.before(:all, type: :feature) do
+    default_url_options[:locale] = I18n.default_locale
+  end
 end

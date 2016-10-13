@@ -48,7 +48,7 @@ RSpec.feature 'Correction creation' do
   end
 
   def visit_answer_path
-    visit answer_permalink_path(answer.id, locale: I18n.locale)
+    visit answer_permalink_path(answer.id)
   end
 
   def within_answer(&block)
