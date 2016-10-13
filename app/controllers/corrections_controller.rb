@@ -3,6 +3,7 @@
 class CorrectionsController < ApplicationController
   before_action :authenticate_user!, only: %i(new create accepting accept)
   before_action :find_correction_and_answer, only: %i(accepting accept diff)
+  before_action :authorize_answer_author, only: %i(accepting accept)
 
   def new
     @answer = Answer.find(params[:id])
@@ -24,13 +25,11 @@ class CorrectionsController < ApplicationController
   end
 
   def accepting
-    return head(:unauthorized) unless current_user?(@answer.author)
     @accept_correction_form = AcceptCorrectionForm.from_correction(@correction)
     respond_to :js
   end
 
   def accept
-    return head(:unauthorized) unless current_user?(@answer.author)
     @accept_correction_form = AcceptCorrectionForm.new(accept_correction_form_params)
 
     respond_to do |format|
@@ -50,6 +49,10 @@ class CorrectionsController < ApplicationController
   end
 
   private
+
+  def authorize_answer_author
+    raise UnauthorizedError unless current_user?(@answer.author)
+  end
 
   def correction_params
     params.require(:correction).permit(:text).merge(author_id: current_user.id)
