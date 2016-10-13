@@ -63,7 +63,7 @@ class CorrectionsController < ApplicationController
   end
 
   def find_correction_and_answer
-    @correction = Correction.find(params[:id])
+    @correction = Correction.includes(:answer).find(params[:id])
     @answer = @correction.answer
   end
 end
