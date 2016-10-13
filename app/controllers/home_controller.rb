@@ -2,17 +2,13 @@
 class HomeController < ApplicationController
   include HomeHelper
 
-  before_action :authenticate_user_if_tab_is_mine!
+  before_action :authenticate_user!, if: -> { tabs.mine? }
 
   def index
     @questions = questions.includes(:best_answer, :author).page(params[:page])
   end
 
   private
-
-  def authenticate_user_if_tab_is_mine!
-    authenticate_user! if tabs.mine?
-  end
 
   # Return the appropriate Question collection for to the selected tab.
   def questions
