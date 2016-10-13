@@ -7,7 +7,7 @@
 
 [Демо](https://glacial-coast-40310.herokuapp.com/).
 
-Для демонстрации созданы пользователи `ivanov`, `zoeva`, `user-0`..`user-24` с
+Для демонстрации созданы пользователи `ivanov`, `zoeva`, `nikita.nikitin`, `user-0`..`user-24` с
 паролем "foobar" и набором тестовых вопросов/ответов (см. [db/seeds.rb](db/seeds.rb)).
 
 ## Замечания и отличия от сценариев

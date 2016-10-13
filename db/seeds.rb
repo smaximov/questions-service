@@ -31,13 +31,25 @@ zoeva = User.create!(username: 'zoeva', fullname: 'Зоя Зоева',
                      email: Faker::Internet.email, password: 'foobar',
                      created_at: 1.year.ago, confirmed_at: 1.year.ago + 5.minutes)
 
+nikitin = User.create!(username: 'nikita.nikitin', fullname: 'Никита Никитин',
+                       email: Faker::Internet.email, password: 'foobar',
+                       created_at: 1.year.ago, confirmed_at: 1.year.ago + 5.minutes)
+
 zoevas_answer = <<ANSWER
 На Октябрьской рядом с южным выходом между полицейской будкой и
 трещиной в стене есть полуржавая дверь, которая временами
-бывает открытой. За ней лежат утерянные архивы Ленинки
+бывает открытой. За ней лежат утерянные архивы Ленинки.
 ANSWER
 zoevas_answer = ivanovs_question.answers.create!(answer: zoevas_answer, author: zoeva,
                                                  created_at: rand(ivanovs_question.created_at..Time.current))
+
+nikitins_correction = <<CORRECTION
+Полуржавая дверь открыта в субботам и воскресениями с 7 до 9 утра,
+по крайней мере я всегда в это время попадаю
+CORRECTION
+nikitins_correction = zoevas_answer.corrections.create!(text: nikitins_correction, author: nikitin,
+                                                        created_at: rand(zoevas_answer.created_at..Time.current))
+nikitins_correction.accept(AcceptCorrectionForm.from_correction(nikitins_correction))
 
 users = Array.new(EXTRA_USERS) do |n|
   user = User.create!(username: "user-#{n}", email: "user-#{n}@example.com",
