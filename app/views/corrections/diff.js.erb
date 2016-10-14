@@ -1,3 +1,16 @@
 var correction = $('.correction[data-id="<%= @correction.id %>"]')
 var correctionBody = correction.find('.correction-body')
+
+correctionBody.data('old-html', correctionBody.html())
 correctionBody.html('<%= j(render_diff @previous_version.text, @correction_version.text) %>')
+
+var diffAnchor = correction.find('.diff-anchor')
+var newAnchor = $('<a>', { href: diffAnchor.attr('href'), class: 'diff-anchor', text: diffAnchor.text() })
+newAnchor.on('click', function (event) {
+  event.preventDefault()
+  var correctionBody = $(this).closest('.correction').find('.correction-body')
+  var oldHtml = correctionBody.html()
+  correctionBody.html(correctionBody.data('old-html'))
+  correctionBody.data('old-html', oldHtml)
+})
+diffAnchor.replaceWith(newAnchor)
